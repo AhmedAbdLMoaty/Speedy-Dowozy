@@ -74,7 +74,6 @@
     left: 0;
     width: 0;
     height: 2px;
-    /* Updated gradient with lower initial opacity that increases rightward */
     background: linear-gradient(
         90deg,
         rgba(var(--color-primary-rgb), 0.2),
@@ -123,15 +122,15 @@
 /* Logo entrance animation */
 @keyframes logoEntry {
     0% {
-        transform: translateX(-100px);
+        transform: translateX(-200px);
         opacity: 0;
     }
     60% {
-        transform: translateX(10px);
+        transform: translateX(20px);
         opacity: 1;
     }
     80% {
-        transform: translateX(-5px);
+        transform: translateX(-10px);
     }
     100% {
         transform: translateX(0);
@@ -140,36 +139,48 @@
 
 .navbar-logo {
     animation: logoEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    /* Keep existing styles */
 }
 
-/* For mobile devices - adjust animation duration */
+/* For mobile devices - adjust animation duration and distance */
 @media (max-width: 767px) {
+    @keyframes logoEntry {
+        0% {
+            transform: translateX(-150px);
+            opacity: 0;
+        }
+        60% {
+            transform: translateX(15px);
+            opacity: 1;
+        }
+        80% {
+            transform: translateX(-8px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
     .navbar-logo {
-        animation-duration: 0.6s; /* Slightly faster on mobile */
+        animation-duration: 0.6s;
     }
 }
 
 /* Mobile Logo Styles */
 @media (max-width: 767px) {
-    /* Adjust logo size for mobile */
     .logo-text {
         font-size: var(--text-md);
     }
 
-    /* Ensure underline effect works on mobile tap */
     .logo-link:active .logo-text::before {
         width: 100%;
         transition: width 0.2s ease;
     }
 
-    /* Adjust speed line position for mobile */
     .navbar-logo::after {
         top: 75%;
         height: 1px;
     }
 
-    /* Make speed line visible on tap for mobile */
     .navbar-logo:active::after {
         width: 20px;
         animation: speedLineMobile 0.5s ease-out;
@@ -714,7 +725,6 @@
 
 /* Touch device compatibility for all screen sizes */
 @media (hover: none) {
-    /* Ensure animations trigger on tap for touch devices */
     .logo-link:active .logo-text::before {
         width: 100%;
     }
