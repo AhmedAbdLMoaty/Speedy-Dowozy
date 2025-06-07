@@ -77,7 +77,7 @@ const Hero = () => {
                     loop
                     playsInline
                     autoPlay
-                    poster="/images/Główne logo na stronę internetową.jpg"
+                    poster="/images/Główne logo na stronę internetową.webp"
                 >
                     <source
                         src="/videos/speedy_dowozy_intro1616857318326.mp4"
@@ -88,7 +88,7 @@ const Hero = () => {
                 <div
                     className="mobile-bg-image"
                     style={{
-                        backgroundImage: "url('/images/start-1 - Kopia.png')",
+                        backgroundImage: "url('/images/start-1 - Kopia.webp')",
                     }}
                 ></div>
             </div>

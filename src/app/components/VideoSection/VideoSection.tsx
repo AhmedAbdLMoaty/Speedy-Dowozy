@@ -62,7 +62,7 @@ const VideoSection = () => {
                             muted
                             loop
                             playsInline
-                            poster="/images/Główne logo na stronę internetową.jpg"
+                            poster="/images/Główne logo na stronę internetową.webp"
                             controls
                         >
                             <source
