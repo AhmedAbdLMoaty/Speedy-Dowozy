@@ -203,7 +203,7 @@ export default function Navbar() {
                     <div className="navbar-logo">
                         <Link href="/" className="logo-link">
                             <Image
-                                src="/images/naklejka speedey tu dowozi.jpg"
+                                src="/images/speedy_dowozy_różowe_logo-removebg-preview.png"
                                 alt="Speedy Dowozy Logo"
                                 width={40}
                                 height={40}
