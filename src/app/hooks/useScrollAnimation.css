@@ -1,0 +1,201 @@
+/* Base animation states */
+.fade-up {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-down {
+    opacity: 0;
+    transform: translateY(-60px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-fade {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Animated in state */
+.fade-up.animate-in,
+.fade-down.animate-in,
+.fade-left.animate-in,
+.fade-right.animate-in,
+.fade-fade.animate-in {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Header animations */
+.animate-header {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+    transition-delay: 0.2s;
+}
+
+.animate-in .animate-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Content animations */
+.animate-content {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+    transition-delay: 0.4s;
+}
+
+.animate-in .animate-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Child element animations */
+.animate-child {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-child.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card animations */
+.animate-card {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Video/Media animations */
+.animate-media {
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0.3s;
+}
+
+.animate-in .animate-media {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Scale animations */
+.animate-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0.4s;
+}
+
+.animate-in .animate-scale {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Stagger delays for multiple elements */
+.animate-child:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.animate-child:nth-child(2) {
+    transition-delay: 0.2s;
+}
+.animate-child:nth-child(3) {
+    transition-delay: 0.3s;
+}
+.animate-child:nth-child(4) {
+    transition-delay: 0.4s;
+}
+.animate-child:nth-child(5) {
+    transition-delay: 0.5s;
+}
+.animate-child:nth-child(6) {
+    transition-delay: 0.6s;
+}
+
+/* Special effects */
+.animate-glow {
+    transition: all 0.8s ease;
+    transition-delay: 0.5s;
+}
+
+.animate-in .animate-glow {
+    box-shadow: 0 0 30px rgba(225, 16, 125, 0.3);
+}
+
+/* Video section specific */
+.video-features {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0.6s;
+}
+
+.animate-in .video-features {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .fade-up,
+    .fade-down,
+    .fade-left,
+    .fade-right {
+        transform: translateY(40px);
+    }
+
+    .animate-header,
+    .animate-content,
+    .animate-child {
+        transform: translateY(30px);
+    }
+
+    .animate-card {
+        transform: translateY(40px) scale(0.98);
+    }
+
+    .animate-media {
+        transform: translateY(50px) scale(0.95);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .fade-up,
+    .fade-down,
+    .fade-left,
+    .fade-right,
+    .fade-fade,
+    .animate-header,
+    .animate-content,
+    .animate-child,
+    .animate-card,
+    .animate-media,
+    .animate-scale {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+}
