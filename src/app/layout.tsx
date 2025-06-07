@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Speedy Delivery - Profesjonalne Usługi Kurierskie",
+    title: "Speedy Dowozy - Szybka Dostawa Jedzenia",
     description:
-        "Szybkie i niezawodne usługi kurierskie w całej Polsce. Śledź swoje przesyłki online.",
+        "Najszybsza dostawa jedzenia w Polsce. Zamów jedzenie online z lokalnych restauracji.",
 };
 
 export default function RootLayout({
