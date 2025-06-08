@@ -6,11 +6,15 @@ import Navbar from "./components/Navbar";
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
+    display: "swap",
+    preload: true,
 });
 
 const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
+    display: "swap",
+    preload: false,
 });
 
 export const metadata: Metadata = {
@@ -25,10 +29,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="pl">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
+        <html
+            lang="pl"
+            className={`${geistSans.variable} ${geistMono.variable}`}
+        >
+            <body className={geistSans.className}>
                 <Navbar />
                 {children}
             </body>

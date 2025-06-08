@@ -11,6 +11,7 @@
         "analyze": "ANALYZE=true next build"
     },
     "dependencies": {
+        "critters": "^0.0.23",
         "next": "15.3.3",
         "react": "^19.0.0",
         "react-dom": "^19.0.0"

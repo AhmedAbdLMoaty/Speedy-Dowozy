@@ -35,7 +35,6 @@
     width: 100%;
 }
 
-/* Logo alignment fixes */
 .navbarLogo {
     flex-shrink: 0;
     display: flex;
@@ -52,8 +51,8 @@
 }
 
 .logoImage {
-    width: 40px;
-    height: 40px;
+    width: 102px;
+    height: 102px;
     object-fit: contain;
     border-radius: 8px;
 }
@@ -85,7 +84,6 @@
     transition: width 0.2s ease;
 }
 
-/* Desktop Navigation */
 .navbarDesktop {
     display: none;
     flex: 1;
@@ -365,7 +363,6 @@
     transition: width 0.2s ease;
 }
 
-/* CTA Text - MODERN TYPOGRAPHY */
 .ctaTitle {
     font-family: var(--font-family-primary);
     font-size: var(--text-sm);
@@ -383,7 +380,6 @@
     color: var(--color-text-secondary);
 }
 
-/* Mobile Menu Button */
 .mobileMenuButton {
     display: flex;
     align-items: center;
@@ -423,7 +419,6 @@
     transform: rotate(90deg);
 }
 
-/* Mobile Menu */
 .mobileMenu {
     display: block;
     transition: all 0.3s ease;
@@ -566,7 +561,6 @@
     border-top: 1px solid #e5e7eb;
 }
 
-/* Touch device compatibility for all screen sizes */
 @media (hover: none) {
     .logoLink:active .logoText::before {
         width: 100%;
@@ -628,6 +622,10 @@
 }
 
 @media (max-width: 900px) {
+    .logoImage {
+        width: 50px;
+        height: 50px;
+    }
     .navLink {
         padding: var(--spacing-xs) var(--spacing-sm);
         font-size: var(--text-xs);
@@ -645,5 +643,12 @@
 @media (max-width: 767px) {
     .logoText {
         font-size: var(--text-base);
+    }
+}
+
+@media (max-width: 767px) {
+    .logoImage {
+        width: 50px;
+        height: 50px;
     }
 }
