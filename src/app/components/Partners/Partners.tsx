@@ -1,31 +1,49 @@
-import "./Partners.css";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import styles from "./Partners.module.css";
 
 const Partners = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     const partnerTypes = [
         {
-            icon: "🍽️",
+            icon: "🍕",
             title: "Restauracje",
-            description:
-                "Zwiększ swoje przychody dzięki naszej platformie dostaw",
+            description: "Dołącz do naszej sieci i zwiększ swoje zyski",
             features: [
-                "Brak opłat startowych",
-                "Wsparcie marketingowe",
-                "Analityka sprzedaży",
+                "0% prowizji przez 3 miesiące",
+                "Darmowy marketing",
+                "Wsparcie 24/7",
             ],
-            color: "blue",
+            color: "Blue",
             buttonText: "Dołącz Teraz",
         },
         {
             icon: "🚗",
             title: "Kierowcy",
             description:
-                "Zarabiaj jako niezależny kierowca w elastycznych godzinach",
-            features: [
-                "Elastyczne godziny",
-                "Tygodniowe wypłaty",
-                "Ubezpieczenie gratis",
-            ],
-            color: "green",
+                "Zarabiaj dostarczając jedzenie w elastycznych godzinach",
+            features: ["Elastyczne godziny", "Dobre zarobki", "Ubezpieczenie"],
+            color: "Green",
             buttonText: "Zostań Kierowcą",
         },
         {
@@ -34,48 +52,65 @@ const Partners = () => {
             description:
                 "Rozwijaj własny biznes z sprawdzonym modelem franczyzowym",
             features: ["Sprawdzony model", "Pełne szkolenie", "Marketing i IT"],
-            color: "purple",
+            color: "Purple",
             buttonText: "Dowiedz Się Więcej",
         },
     ];
 
     return (
-        <section className="partners-section">
+        <section ref={sectionRef} className={styles.partnersSection}>
             <div className="container">
-                <div className="partners-header">
-                    <h2 className="section-title">Dołącz do Naszej Sieci</h2>
-                    <p className="section-subtitle">
+                <div
+                    className={`${styles.partnersHeader} ${
+                        isVisible ? styles.animateIn : ""
+                    }`}
+                >
+                    <h2 className={styles.sectionTitle}>
+                        Dołącz do Naszej Sieci
+                    </h2>
+                    <p className={styles.sectionSubtitle}>
                         Zostań częścią największej sieci dostaw w Polsce
                     </p>
                 </div>
 
-                <div className="partners-grid">
+                <div className={styles.partnersGrid}>
                     {partnerTypes.map((partner, index) => (
                         <div
                             key={index}
-                            className={`partner-card partner-${partner.color}`}
+                            className={`${styles.partnerCard} ${
+                                styles[`partner${partner.color}`]
+                            } ${isVisible ? styles.animateIn : ""}`}
                         >
-                            <div className="partner-icon">
-                                <span className="icon-emoji">
+                            <div className={styles.partnerIcon}>
+                                <span className={styles.iconEmoji}>
                                     {partner.icon}
                                 </span>
                             </div>
-                            <h3 className="partner-title">{partner.title}</h3>
-                            <p className="partner-description">
+                            <h3 className={styles.partnerTitle}>
+                                {partner.title}
+                            </h3>
+                            <p className={styles.partnerDescription}>
                                 {partner.description}
                             </p>
 
-                            <ul className="partner-features">
+                            <ul className={styles.partnerFeatures}>
                                 {partner.features.map((feature, idx) => (
-                                    <li key={idx} className="partner-feature">
-                                        <span className="feature-check">✓</span>
+                                    <li
+                                        key={idx}
+                                        className={styles.partnerFeature}
+                                    >
+                                        <span className={styles.featureCheck}>
+                                            ✓
+                                        </span>
                                         {feature}
                                     </li>
                                 ))}
                             </ul>
 
                             <button
-                                className={`partner-btn btn-${partner.color}`}
+                                className={`${styles.partnerBtn} ${
+                                    styles[`btn${partner.color}`]
+                                }`}
                             >
                                 {partner.buttonText}
                                 <svg

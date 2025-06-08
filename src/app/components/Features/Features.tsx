@@ -1,62 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import "./Features.css";
+import { useState, useRef, useEffect } from "react";
+import styles from "./Features.module.css";
 
 const Features = () => {
+    const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
-
-    const features = [
-        {
-            icon: "⚡",
-            title: "Ekspresowa Dostawa",
-            description:
-                "Gwarantujemy dostawę w 15 minut dzięki zaawansowanemu systemowi logistycznemu",
-            speed: "fast",
-        },
-        {
-            icon: "📱",
-            title: "Aplikacja Mobilna",
-            description:
-                "Intuicyjna aplikacja dla klientów, restauracji i kierowców z pełnym systemem zarządzania",
-            speed: "medium",
-        },
-        {
-            icon: "🤝",
-            title: "Pełne Wsparcie",
-            description:
-                "Kompleksowe wsparcie biznesowe, marketingowe i techniczne dla wszystkich partnerów",
-            speed: "slow",
-        },
-    ];
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target as HTMLElement;
-                        target.classList.add("animate-in");
-
-                        // Animate feature cards
-                        const cards = target.querySelectorAll(".feature-card");
-                        cards.forEach((card, index) => {
-                            setTimeout(() => {
-                                card.classList.add("visible");
-                            }, index * 200);
-                        });
-
-                        // Animate speed demo
-                        const speedDemo = target.querySelector(".speed-demo");
-                        if (speedDemo) {
-                            setTimeout(() => {
-                                speedDemo.classList.add("counting");
-                            }, 500);
-                        }
-                    }
-                });
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
             },
-            { threshold: 0.2 }
+            { threshold: 0.1 }
         );
 
         if (sectionRef.current) {
@@ -66,81 +24,105 @@ const Features = () => {
         return () => observer.disconnect();
     }, []);
 
+    const features = [
+        {
+            icon: "⚡",
+            title: "Ekspresowa Dostawa",
+            description:
+                "Gwarantujemy dostawę w 15 minut dzięki zaawansowanemu systemowi logistycznemu i strategicznie rozmieszczonym punktom",
+            type: "emoji",
+        },
+        {
+            icon: "📱",
+            title: "Aplikacja Mobilna",
+            description:
+                "Intuicyjna aplikacja dla klientów, restauracji i kierowców z pełnym systemem zarządzania zamówieniami",
+            type: "emoji",
+        },
+        {
+            icon: "🤝",
+            title: "Pełne Wsparcie",
+            description:
+                "Kompleksowe wsparcie biznesowe, marketingowe i techniczne dla wszystkich naszych partnerów",
+            type: "emoji",
+        },
+    ];
+
     return (
-        <section ref={sectionRef} className="features-section">
+        <section ref={sectionRef} className={styles.featuresSection}>
             <div className="container">
-                <div className="features-header">
-                    <h2 className="section-title">Dlaczego Speedy Dowozy?</h2>
-                    <p className="section-subtitle">
+                <div
+                    className={`${styles.featuresHeader} ${
+                        isVisible ? styles.animateIn : ""
+                    }`}
+                >
+                    <h2 className={styles.sectionTitle}>
+                        Dlaczego Speedy Dowozy?
+                    </h2>
+                    <p className={styles.sectionSubtitle}>
                         Nowoczesne rozwiązania dla wszystkich uczestników rynku
                         dostaw
                     </p>
 
-                    <div className="speed-demo">
-                        <div className="speed-track">
-                            <div className="speed-indicator slow">
+                    <div
+                        className={`${styles.speedDemo} ${
+                            isVisible ? styles.speedDemoAnimated : ""
+                        }`}
+                    >
+                        <div className={styles.speedTrack}>
+                            <div
+                                className={`${styles.speedIndicator} ${styles.speedIndicatorSlow}`}
+                            >
                                 <span>Konkurencja</span>
-                                <div className="speed-bar">
+                                <div className={styles.speedBar}>
                                     <div
-                                        className="speed-fill"
-                                        data-speed="30"
+                                        className={`${styles.speedFill} ${styles.speedFillSlow}`}
                                     ></div>
                                 </div>
-                                <span className="speed-time">30+ min</span>
+                                <span className={styles.speedTime}>
+                                    30+ min
+                                </span>
                             </div>
-                            <div className="speed-indicator fast">
+                            <div
+                                className={`${styles.speedIndicator} ${styles.speedIndicatorFast}`}
+                            >
                                 <span>Speedy Dowozy</span>
-                                <div className="speed-bar">
+                                <div className={styles.speedBar}>
                                     <div
-                                        className="speed-fill"
-                                        data-speed="15"
+                                        className={`${styles.speedFill} ${styles.speedFillFast}`}
                                     ></div>
                                 </div>
-                                <span className="speed-time">15 min</span>
+                                <span className={styles.speedTime}>15 min</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="features-grid">
+                <div
+                    className={`${styles.featuresGrid} ${
+                        isVisible ? styles.featuresGridAnimated : ""
+                    }`}
+                >
                     {features.map((feature, index) => (
-                        <div
-                            key={feature.title}
-                            className={`feature-card speed-${feature.speed}`}
-                            style={
-                                {
-                                    "--delay": `${index * 0.2}s`,
-                                } as React.CSSProperties
-                            }
-                        >
-                            <div className="feature-icon">
-                                <span className="icon-emoji">
+                        <div key={index} className={styles.featureCard}>
+                            {feature.type === "emoji" ? (
+                                <span className={styles.featureIcon}>
                                     {feature.icon}
                                 </span>
-                                <div className="icon-pulse"></div>
-                            </div>
-                            <h3 className="feature-title">{feature.title}</h3>
-                            <p className="feature-description">
-                                {feature.description}
-                            </p>
-
-                            <div className="feature-speed">
-                                <div className="speed-dots">
-                                    {Array.from({ length: 3 }, (_, i) => (
-                                        <div
-                                            key={i}
-                                            className="speed-dot"
-                                            style={
-                                                {
-                                                    "--dot-delay": `${
-                                                        i * 0.1
-                                                    }s`,
-                                                } as React.CSSProperties
-                                            }
-                                        />
-                                    ))}
+                            ) : (
+                                <div className={styles.iconPulse}>
+                                    <span
+                                        style={{
+                                            color: "white",
+                                            fontSize: "24px",
+                                        }}
+                                    >
+                                        {feature.icon}
+                                    </span>
                                 </div>
-                            </div>
+                            )}
+                            <h3>{feature.title}</h3>
+                            <p>{feature.description}</p>
                         </div>
                     ))}
                 </div>

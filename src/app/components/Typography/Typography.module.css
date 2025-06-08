@@ -1,0 +1,167 @@
+.typography {
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Variant Styles */
+.h1 {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tighter);
+    color: var(--color-text-primary);
+}
+
+.h2 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text-primary);
+}
+
+.h3 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-primary);
+}
+
+.h4 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-primary);
+}
+
+.h5 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-primary);
+}
+
+.h6 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-primary);
+}
+
+.p {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+}
+
+.span {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+.small {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-secondary);
+}
+
+/* Weight Classes */
+.weightLight {
+    font-weight: var(--font-weight-light);
+}
+.weightNormal {
+    font-weight: var(--font-weight-normal);
+}
+.weightMedium {
+    font-weight: var(--font-weight-medium);
+}
+.weightSemibold {
+    font-weight: var(--font-weight-semibold);
+}
+.weightBold {
+    font-weight: var(--font-weight-bold);
+}
+.weightExtrabold {
+    font-weight: var(--font-weight-extrabold);
+}
+.weightBlack {
+    font-weight: var(--font-weight-black);
+}
+
+/* Size Classes */
+.sizeXs {
+    font-size: var(--text-xs);
+}
+.sizeSm {
+    font-size: var(--text-sm);
+}
+.sizeBase {
+    font-size: var(--text-base);
+}
+.sizeLg {
+    font-size: var(--text-lg);
+}
+.sizeXl {
+    font-size: var(--text-xl);
+}
+.size2xl {
+    font-size: var(--text-2xl);
+}
+.size3xl {
+    font-size: var(--text-3xl);
+}
+.size4xl {
+    font-size: var(--text-4xl);
+}
+.size5xl {
+    font-size: var(--text-5xl);
+}
+
+/* Color Classes */
+.colorPrimary {
+    color: var(--color-text-primary);
+}
+.colorSecondary {
+    color: var(--color-text-secondary);
+}
+.colorMuted {
+    color: var(--color-text-muted);
+}
+.colorBrand {
+    color: var(--color-primary);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    .h1 {
+        font-size: var(--text-4xl);
+    }
+    .h2 {
+        font-size: var(--text-3xl);
+    }
+    .h3 {
+        font-size: var(--text-2xl);
+    }
+    .h4 {
+        font-size: var(--text-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .h1 {
+        font-size: var(--text-3xl);
+    }
+    .h2 {
+        font-size: var(--text-2xl);
+    }
+    .h3 {
+        font-size: var(--text-xl);
+    }
+}

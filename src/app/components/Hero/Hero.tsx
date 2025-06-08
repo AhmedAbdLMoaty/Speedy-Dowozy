@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import "./Hero.css";
+import styles from "./Hero.module.css";
 
 const Hero = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -37,13 +37,17 @@ const Hero = () => {
         if (!isLoaded) return;
 
         const animateCounters = () => {
-            const counters = document.querySelectorAll(".stat[data-count]");
+            const counters = document.querySelectorAll(
+                `.${styles.stat}[data-count]`
+            );
 
             counters.forEach((counter) => {
                 const target = parseInt(
                     counter.getAttribute("data-count") || "0"
                 );
-                const numberElement = counter.querySelector(".stat-number");
+                const numberElement = counter.querySelector(
+                    `.${styles.statNumber}`
+                );
                 if (!numberElement) return;
 
                 let current = 0;
@@ -68,37 +72,34 @@ const Hero = () => {
     }, [isLoaded]);
 
     return (
-        <section ref={sectionRef} className="hero-section">
-            <div className="hero-background">
+        <section ref={sectionRef} className={styles.heroSection}>
+            <div className={styles.heroBackground}>
                 <video
                     ref={videoRef}
-                    className="hero-video"
+                    className={styles.heroVideo}
                     muted
                     loop
                     playsInline
                     autoPlay
-                    poster="/images/Główne logo na stronę internetową.webp"
+                    poster="/images/logo1.webp"
                 >
-                    <source
-                        src="/videos/speedy_dowozy_intro1616857318326.mp4"
-                        type="video/mp4"
-                    />
+                    <source src="/videos/video0.mp4" type="video/mp4" />
                 </video>
 
                 <div
-                    className="mobile-bg-image"
+                    className={styles.mobileBgImage}
                     style={{
-                        backgroundImage: "url('/images/start-1 - Kopia.webp')",
+                        backgroundImage: "url('/images/mob-bg.webp')",
                     }}
                 ></div>
             </div>
 
-            <div className="hero-overlay">
-                <div className="speed-lines">
+            <div className={styles.heroOverlay}>
+                <div className={styles.speedLines}>
                     {Array.from({ length: 20 }, (_, i) => (
                         <div
                             key={i}
-                            className="speed-line"
+                            className={styles.speedLine}
                             style={{ animationDelay: `${i * 0.1}s` }}
                         />
                     ))}
@@ -106,23 +107,27 @@ const Hero = () => {
             </div>
 
             <div className="container">
-                <div className={`hero-content ${isLoaded ? "loaded" : ""}`}>
-                    <div className="hero-badge">
-                        <span className="badge-icon">⚡</span>
+                <div
+                    className={`${styles.heroContent} ${
+                        isLoaded ? styles.loaded : ""
+                    }`}
+                >
+                    <div className={styles.heroBadge}>
+                        <span className={styles.badgeIcon}>⚡</span>
                         <span>Najszybsza dostawa w Polsce</span>
                     </div>
 
-                    <h1 className="hero-title">
-                        <span className="title-main">Speedy</span>
-                        <span className="title-accent">Dowozy</span>
+                    <h1 className={styles.heroTitle}>
+                        <span className={styles.titleMain}>Speedy</span>
+                        <span className={styles.titleAccent}>Dowozy</span>
                     </h1>
 
-                    <p className="hero-subtitle">
+                    <p className={styles.heroSubtitle}>
                         Ekspresowa dostawa jedzenia w{" "}
-                        <span className="highlight-time">15 minut</span>
+                        <span className={styles.highlightTime}>15 minut</span>
                     </p>
 
-                    <div className="hero-stats">
+                    <div className={styles.heroStats}>
                         {[
                             { count: 15, label: "minut" },
                             { count: 500, label: "restauracji" },
@@ -130,20 +135,24 @@ const Hero = () => {
                         ].map(({ count, label }) => (
                             <div
                                 key={label}
-                                className="stat"
+                                className={styles.stat}
                                 data-count={count}
                             >
-                                <span className="stat-number">0</span>
-                                <span className="stat-label">{label}</span>
-                                <div className="stat-progress"></div>
+                                <span className={styles.statNumber}>0</span>
+                                <span className={styles.statLabel}>
+                                    {label}
+                                </span>
+                                <div className={styles.statProgress}></div>
                             </div>
                         ))}
                     </div>
 
-                    <div className="hero-actions">
-                        <button className="btn-primary btn-speed">
+                    <div className={styles.heroActions}>
+                        <button
+                            className={`${styles.btnPrimary} ${styles.btnSpeed}`}
+                        >
                             <span>Zamów Teraz</span>
-                            <div className="btn-speed-effect"></div>
+                            <div className={styles.btnSpeedEffect}></div>
                             <svg
                                 viewBox="0 0 24 24"
                                 fill="none"
@@ -157,17 +166,17 @@ const Hero = () => {
                                 />
                             </svg>
                         </button>
-                        <button className="btn-secondary">
+                        <button className={styles.btnSecondary}>
                             Dołącz jako Partner
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div className="scroll-indicator">
-                <div className="scroll-speed">
-                    <div className="scroll-arrow"></div>
-                    <span className="scroll-text">Przeżyj prędkość</span>
+            <div className={styles.scrollIndicator}>
+                <div className={styles.scrollSpeed}>
+                    <div className={styles.scrollArrow}></div>
+                    <span className={styles.scrollText}>Przeżyj prędkość</span>
                 </div>
             </div>
         </section>

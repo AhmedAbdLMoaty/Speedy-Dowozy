@@ -24,11 +24,9 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
             (entries) => {
                 entries.forEach((entry) => {
                     const target = entry.target as HTMLElement;
-
                     if (entry.isIntersecting) {
                         target.classList.add("animate-in");
 
-                        // Animate child elements with stagger
                         const animatedChildren =
                             target.querySelectorAll(".animate-child");
                         animatedChildren.forEach((child, index) => {

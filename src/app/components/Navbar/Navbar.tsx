@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import "./Navbar.css";
+import Typography from "../Typography";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -138,7 +139,9 @@ export default function Navbar() {
 
     const DropdownIcon = ({ isOpen }: { isOpen: boolean }) => (
         <svg
-            className={`dropdown-icon ${isOpen ? "rotate-180" : ""}`}
+            className={`${styles.dropdownIcon} ${
+                isOpen ? styles.rotate180 : ""
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -163,11 +166,20 @@ export default function Navbar() {
         iconPath: string;
         items: Array<{ href: string; text: string; color: string }>;
     }) => (
-        <div className="mega-menu-section">
-            <h3 className="mega-menu-title">
-                <div className={`menu-icon menu-icon-${iconColor}`}>
+        <div className={styles.megaMenuSection}>
+            <h3 className={styles.megaMenuTitle}>
+                <div
+                    className={`${styles.menuIcon} ${
+                        styles[
+                            `menuIcon${
+                                iconColor.charAt(0).toUpperCase() +
+                                iconColor.slice(1)
+                            }`
+                        ]
+                    }`}
+                >
                     <svg
-                        className="icon"
+                        className={styles.icon}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -182,12 +194,19 @@ export default function Navbar() {
                 </div>
                 {title}
             </h3>
-            <div className="mega-menu-links">
+            <div className={styles.megaMenuLinks}>
                 {items.map((item, index) => (
                     <Link
                         key={index}
                         href={item.href}
-                        className={`mega-menu-link text-${item.color}-600`}
+                        className={`${styles.megaMenuLink} ${
+                            styles[
+                                `text${
+                                    item.color.charAt(0).toUpperCase() +
+                                    item.color.slice(1)
+                                }600`
+                            ]
+                        }`}
                     >
                         {item.text}
                     </Link>
@@ -197,40 +216,47 @@ export default function Navbar() {
     );
 
     return (
-        <nav className="navbar">
-            <div className="navbar-container">
-                <div className="navbar-content">
-                    <div className="navbar-logo">
-                        <Link href="/" className="logo-link">
+        <nav className={styles.navbar}>
+            <div className={styles.navbarContainer}>
+                <div className={styles.navbarContent}>
+                    <div className={styles.navbarLogo}>
+                        <Link href="/" className={styles.logoLink}>
                             <Image
-                                src="/images/speedy_dowozy_różowe_logo-removebg-preview.png"
+                                src="/logos/logo0.png"
                                 alt="Speedy Dowozy Logo"
                                 width={40}
                                 height={40}
-                                className="logo-image"
+                                className={styles.logoImage}
                                 priority
                             />
-                            <span className="logo-text">Speedy Dowozy</span>
+                            <Typography
+                                variant="span"
+                                weight="bold"
+                                color="brand"
+                                className={styles.logoText}
+                            >
+                                Speedy Dowozy
+                            </Typography>
                         </Link>
                     </div>
 
-                    <div className="navbar-desktop">
-                        <div className="navbar-menu">
+                    <div className={styles.navbarDesktop}>
+                        <div className={styles.navbarMenu}>
                             <div
-                                className="mega-menu-trigger"
+                                className={styles.megaMenuTrigger}
                                 onMouseEnter={() =>
                                     handleMegaMenuEnter("services")
                                 }
                                 onMouseLeave={handleMegaMenuLeave}
                             >
-                                <button className="nav-link">
+                                <button className={styles.navLink}>
                                     <span>Usługi</span>
                                     <DropdownIcon isOpen={false} />
                                 </button>
 
                                 {activeMegaMenu === "services" && (
                                     <div
-                                        className="mega-menu"
+                                        className={styles.megaMenu}
                                         onMouseEnter={
                                             handleMegaMenuContentEnter
                                         }
@@ -238,7 +264,7 @@ export default function Navbar() {
                                             handleMegaMenuContentLeave
                                         }
                                     >
-                                        <div className="mega-menu-grid">
+                                        <div className={styles.megaMenuGrid}>
                                             <MenuSection
                                                 title="Dostawa Jedzenia"
                                                 iconColor="pink"
@@ -259,19 +285,23 @@ export default function Navbar() {
                                             />
                                         </div>
 
-                                        <div className="mega-menu-cta">
+                                        <div className={styles.megaMenuCta}>
                                             <div>
-                                                <h4 className="cta-title">
+                                                <h4 className={styles.ctaTitle}>
                                                     Potrzebujesz pomocy?
                                                 </h4>
-                                                <p className="cta-subtitle">
+                                                <p
+                                                    className={
+                                                        styles.ctaSubtitle
+                                                    }
+                                                >
                                                     Skontaktuj się z naszym
                                                     zespołem wsparcia
                                                 </p>
                                             </div>
                                             <Link
                                                 href="/kontakt"
-                                                className="btn-primary"
+                                                className={styles.btnPrimary}
                                             >
                                                 Pomoc 24/7
                                             </Link>
@@ -281,20 +311,20 @@ export default function Navbar() {
                             </div>
 
                             <div
-                                className="mega-menu-trigger"
+                                className={styles.megaMenuTrigger}
                                 onMouseEnter={() =>
                                     handleMegaMenuEnter("tools")
                                 }
                                 onMouseLeave={handleMegaMenuLeave}
                             >
-                                <button className="nav-link">
+                                <button className={styles.navLink}>
                                     <span>Narzędzia</span>
                                     <DropdownIcon isOpen={false} />
                                 </button>
 
                                 {activeMegaMenu === "tools" && (
                                     <div
-                                        className="mega-menu mega-menu-tools"
+                                        className={`${styles.megaMenu} ${styles.megaMenuTools}`}
                                         onMouseEnter={
                                             handleMegaMenuContentEnter
                                         }
@@ -302,7 +332,7 @@ export default function Navbar() {
                                             handleMegaMenuContentLeave
                                         }
                                     >
-                                        <div className="mega-menu-grid-2">
+                                        <div className={styles.megaMenuGrid2}>
                                             <MenuSection
                                                 title="Śledzenie Zamówień"
                                                 iconColor="purple"
@@ -320,30 +350,36 @@ export default function Navbar() {
                                 )}
                             </div>
 
-                            <Link href="/restauracje" className="nav-link">
+                            <Link
+                                href="/restauracje"
+                                className={styles.navLink}
+                            >
                                 Restauracje
                             </Link>
-                            <Link href="/o-nas" className="nav-link">
+                            <Link href="/o-nas" className={styles.navLink}>
                                 O Nas
                             </Link>
-                            <Link href="/kontakt" className="nav-link">
+                            <Link href="/kontakt" className={styles.navLink}>
                                 Kontakt
                             </Link>
-                            <Link href="/zamow-teraz" className="btn-primary">
+                            <Link
+                                href="/zamow-teraz"
+                                className={styles.btnPrimary}
+                            >
                                 Zamów Teraz
                             </Link>
                         </div>
                     </div>
 
-                    <div className="mobile-menu-button">
+                    <div className={styles.mobileMenuButton}>
                         <button
                             onClick={toggleMenu}
-                            className="menu-toggle"
+                            className={styles.menuToggle}
                             aria-label="Toggle menu"
                         >
                             <svg
-                                className={`menu-icon ${
-                                    isMenuOpen ? "rotate-90" : ""
+                                className={`${styles.menuIcon} ${
+                                    isMenuOpen ? styles.rotate90 : ""
                                 }`}
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -370,15 +406,15 @@ export default function Navbar() {
                 </div>
 
                 <div
-                    className={`mobile-menu ${
-                        isMenuOpen ? "mobile-menu-open" : ""
+                    className={`${styles.mobileMenu} ${
+                        isMenuOpen ? styles.mobileMenuOpen : ""
                     }`}
                 >
-                    <div className="mobile-menu-content">
-                        <div className="mobile-dropdown">
+                    <div className={styles.mobileMenuContent}>
+                        <div className={styles.mobileDropdown}>
                             <button
                                 onClick={() => toggleMobileDropdown("services")}
-                                className="mobile-dropdown-trigger"
+                                className={styles.mobileDropdownTrigger}
                             >
                                 <span>Usługi Dostawy</span>
                                 <DropdownIcon
@@ -387,31 +423,31 @@ export default function Navbar() {
                             </button>
 
                             {activeMobileDropdown === "services" && (
-                                <div className="mobile-dropdown-content">
+                                <div className={styles.mobileDropdownContent}>
                                     <Link
                                         href="/dostawy/ekspresowa"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         Dostawa Ekspresowa
                                     </Link>
                                     <Link
                                         href="/dostawy/standardowa"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         Dostawa Standardowa
                                     </Link>
                                     <Link
                                         href="/restauracje/dolacz"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         Dla Restauracji
                                     </Link>
                                     <Link
                                         href="/kierowcy/dolacz"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         Zostań Kierowcą
@@ -420,10 +456,10 @@ export default function Navbar() {
                             )}
                         </div>
 
-                        <div className="mobile-dropdown">
+                        <div className={styles.mobileDropdown}>
                             <button
                                 onClick={() => toggleMobileDropdown("tools")}
-                                className="mobile-dropdown-trigger"
+                                className={styles.mobileDropdownTrigger}
                             >
                                 <span>Narzędzia</span>
                                 <DropdownIcon
@@ -432,31 +468,31 @@ export default function Navbar() {
                             </button>
 
                             {activeMobileDropdown === "tools" && (
-                                <div className="mobile-dropdown-content">
+                                <div className={styles.mobileDropdownContent}>
                                     <Link
                                         href="/sledzenie"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         Śledź Zamówienie
                                     </Link>
                                     <Link
                                         href="/aplikacja-mobilna"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         Pobierz Aplikację
                                     </Link>
                                     <Link
                                         href="/centrum-pomocy"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         Centrum Pomocy
                                     </Link>
                                     <Link
                                         href="/faq"
-                                        className="mobile-dropdown-link"
+                                        className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
                                     >
                                         FAQ
@@ -467,30 +503,30 @@ export default function Navbar() {
 
                         <Link
                             href="/restauracje"
-                            className="mobile-nav-link"
+                            className={styles.mobileNavLink}
                             onClick={closeMobileMenu}
                         >
                             Restauracje
                         </Link>
                         <Link
                             href="/o-nas"
-                            className="mobile-nav-link"
+                            className={styles.mobileNavLink}
                             onClick={closeMobileMenu}
                         >
                             O Nas
                         </Link>
                         <Link
                             href="/kontakt"
-                            className="mobile-nav-link"
+                            className={styles.mobileNavLink}
                             onClick={closeMobileMenu}
                         >
                             Kontakt
                         </Link>
 
-                        <div className="mobile-cta">
+                        <div className={styles.mobileCta}>
                             <Link
                                 href="/zamow-teraz"
-                                className="btn-primary"
+                                className={styles.btnPrimary}
                                 onClick={closeMobileMenu}
                             >
                                 Zamów Teraz
