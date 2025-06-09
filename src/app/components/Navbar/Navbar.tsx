@@ -207,6 +207,7 @@ export default function Navbar() {
                                 }600`
                             ]
                         }`}
+                        prefetch={false}
                     >
                         {item.text}
                     </Link>
@@ -428,6 +429,7 @@ export default function Navbar() {
                                         href="/dostawy/ekspresowa"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         Dostawa Ekspresowa
                                     </Link>
@@ -435,6 +437,7 @@ export default function Navbar() {
                                         href="/dostawy/standardowa"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         Dostawa Standardowa
                                     </Link>
@@ -442,6 +445,7 @@ export default function Navbar() {
                                         href="/restauracje/dolacz"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         Dla Restauracji
                                     </Link>
@@ -449,6 +453,7 @@ export default function Navbar() {
                                         href="/kierowcy/dolacz"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         Zostań Kierowcą
                                     </Link>
@@ -473,6 +478,7 @@ export default function Navbar() {
                                         href="/sledzenie"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         Śledź Zamówienie
                                     </Link>
@@ -480,6 +486,7 @@ export default function Navbar() {
                                         href="/aplikacja-mobilna"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         Pobierz Aplikację
                                     </Link>
@@ -487,6 +494,7 @@ export default function Navbar() {
                                         href="/centrum-pomocy"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         Centrum Pomocy
                                     </Link>
@@ -494,6 +502,7 @@ export default function Navbar() {
                                         href="/faq"
                                         className={styles.mobileDropdownLink}
                                         onClick={closeMobileMenu}
+                                        prefetch={false}
                                     >
                                         FAQ
                                     </Link>

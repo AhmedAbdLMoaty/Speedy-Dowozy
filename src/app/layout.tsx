@@ -8,6 +8,18 @@ const geistSans = Geist({
     subsets: ["latin"],
     display: "swap",
     preload: true,
+    fallback: [
+        "system-ui",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Helvetica Neue",
+        "Arial",
+        "sans-serif",
+    ],
+    adjustFontFallback: true,
+    weight: ["400", "500", "600"],
 });
 
 const geistMono = Geist_Mono({
@@ -29,11 +41,49 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html
-            lang="pl"
-            className={`${geistSans.variable} ${geistMono.variable}`}
-        >
-            <body className={geistSans.className}>
+        <html lang="pl">
+            <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link
+                    rel="preconnect"
+                    href="https://fonts.gstatic.com"
+                    crossOrigin="anonymous"
+                />
+
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/images/mob-bg-optimized.webp"
+                    media="(max-width: 768px)"
+                    fetchPriority="high"
+                />
+
+                <style
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                    /* Base font fallbacks for all devices */
+                    html {
+                        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    }
+                    
+                    /* Desktop font fix - using direct variable reference */
+                    @media (min-width: 769px) {
+                        body, button, h1, h2, h3, h4, h5, h6, p, span, div, a, input {
+                            font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                        }
+                    }
+                    
+                    /* Mobile font optimization */
+                    @media (max-width: 768px) {
+                        body, h1, h2, h3, h4, h5, h6, p, button, a, span, div {
+                            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                        }
+                    }
+                `,
+                    }}
+                />
+            </head>
+            <body className={`${geistSans.variable} ${geistMono.variable}`}>
                 <Navbar />
                 {children}
             </body>

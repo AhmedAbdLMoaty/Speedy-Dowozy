@@ -124,7 +124,7 @@ const Hero = () => {
                     className={styles.mobileBgImage}
                     style={{
                         backgroundImage: isMobile
-                            ? "url('/images/mob-bg.webp')"
+                            ? "url('/images/mob-bg-optimized.webp')"
                             : "none",
                     }}
                 ></div>

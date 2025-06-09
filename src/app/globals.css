@@ -75,19 +75,19 @@
 }
 
 * {
-    font-family: var(--font-family-primary) !important;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+*,
 *::before,
 *::after {
-    font-family: var(--font-family-primary) !important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
 }
 
 html {
-    font-family: var(--font-family-primary) !important;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -98,7 +98,6 @@ html,
 body {
     max-width: 100vw;
     overflow-x: hidden;
-    font-family: var(--font-family-primary) !important;
 }
 
 body {
@@ -107,35 +106,74 @@ body {
     font-size: var(--text-base);
     line-height: var(--line-height-normal);
     letter-spacing: var(--letter-spacing-normal);
-    font-family: var(--font-family-primary) !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-div,
-a,
-button,
-input,
-textarea,
-select,
-label,
-li,
-ul,
-ol,
-nav,
-header,
-footer,
-section,
-article,
-aside,
-main {
-    font-family: var(--font-family-primary) !important;
+@media (min-width: 769px) {
+    *,
+    *::before,
+    *::after,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    div,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    label,
+    li,
+    ul,
+    ol,
+    nav,
+    header,
+    footer,
+    section,
+    article,
+    aside,
+    main {
+        font-family: var(--font-geist-sans), system-ui, -apple-system,
+            BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+}
+
+@media (max-width: 768px) {
+    *,
+    *::before,
+    *::after,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    div,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    label,
+    li,
+    ul,
+    ol,
+    nav,
+    header,
+    footer,
+    section,
+    article,
+    aside,
+    main {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, sans-serif !important;
+    }
 }
 
 h1,
@@ -145,7 +183,6 @@ h1,
     line-height: var(--line-height-tight) !important;
     letter-spacing: var(--letter-spacing-tighter) !important;
     color: var(--color-text-primary) !important;
-    font-family: var(--font-family-primary) !important;
 }
 
 h2,
@@ -299,7 +336,6 @@ p,
     background-color: var(--color-primary);
 }
 
-/* MODERN GRADIENTS */
 .bg-gradient-pink {
     background: linear-gradient(
         135deg,
@@ -391,7 +427,6 @@ nav *,
     font-family: var(--font-family-primary) !important;
 }
 
-/* FORCE FONT ON ALL POSSIBLE SELECTORS */
 [class*="nav"],
 [class*="menu"],
 [class*="button"],
