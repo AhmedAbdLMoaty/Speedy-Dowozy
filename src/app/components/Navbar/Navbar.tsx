@@ -8,7 +8,7 @@ import styles from "./Navbar.module.css";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     useEffect(() => {
         const handlePageLoad = () => setIsMenuOpen(false);
         if (document.readyState === "complete") {
@@ -19,8 +19,43 @@ export default function Navbar() {
         }
     }, []);
 
+    const zakladkiSections = [
+        {
+            id: "kim-jestesmy",
+            title: "Kim jesteśmy?",
+            path: "/zakladki/kim-jestesmy",
+        },
+        {
+            id: "gdzie-dzialamy",
+            title: "Gdzie działamy?",
+            path: "/zakladki/gdzie-dzialamy",
+        },
+        { id: "kadra", title: "Kadra zarządzająca", path: "/zakladki/kadra" },
+        { id: "zespol", title: "Zespół Speedy", path: "/zakladki/zespol" },
+        {
+            id: "aplikacja",
+            title: "Aplikacja Speedy",
+            path: "/zakladki/aplikacja",
+        },
+        {
+            id: "administrator",
+            title: "Strona administratora",
+            path: "/zakladki/administrator",
+        },
+        { id: "statystyki", title: "Statystyki", path: "/zakladki/statystyki" },
+        { id: "franczyza", title: "Franczyza", path: "/zakladki/franczyza" },
+    ];
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const handleDropdownEnter = () => {
+        setIsDropdownOpen(true);
+    };
+
+    const handleDropdownLeave = () => {
+        setIsDropdownOpen(false);
     };
 
     return (
@@ -46,16 +81,59 @@ export default function Navbar() {
                                 Speedy Dowozy
                             </Typography>
                         </Link>
-                    </div>
-
+                    </div>{" "}
                     <div className={styles.navbarDesktop}>
                         <div className={styles.navbarMenu}>
-                            {/* Single navigation tab - content will be provided separately */}
-                            <Link href="/zakladki" className={styles.navLink}>
-                                Zakładki
-                            </Link>
+                            <div
+                                className={styles.dropdownContainer}
+                                onMouseEnter={handleDropdownEnter}
+                                onMouseLeave={handleDropdownLeave}
+                            >
+                                <Link
+                                    href="/zakladki"
+                                    className={styles.navLink}
+                                >
+                                    Zakładki
+                                    <svg
+                                        className={`${styles.dropdownIcon} ${
+                                            isDropdownOpen
+                                                ? styles.dropdownIconOpen
+                                                : ""
+                                        }`}
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        width="16"
+                                        height="16"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </Link>
 
-                            {/* Primary action button retained */}
+                                {isDropdownOpen && (
+                                    <div className={styles.dropdown}>
+                                        <div className={styles.dropdownContent}>
+                                            {zakladkiSections.map((section) => (
+                                                <Link
+                                                    key={section.id}
+                                                    href={section.path}
+                                                    className={
+                                                        styles.dropdownItem
+                                                    }
+                                                >
+                                                    {section.title}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
                             <Link
                                 href="/zamow-teraz"
                                 className={styles.btnPrimary}
@@ -64,7 +142,6 @@ export default function Navbar() {
                             </Link>
                         </div>
                     </div>
-
                     <div className={styles.mobileMenuButton}>
                         <button
                             onClick={toggleMenu}
@@ -97,30 +174,31 @@ export default function Navbar() {
                             </svg>
                         </button>
                     </div>
-                </div>
-
+                </div>{" "}
                 <div
                     className={`${styles.mobileMenu} ${
                         isMenuOpen ? styles.mobileMenuOpen : ""
                     }`}
                 >
                     <div className={styles.mobileMenuContent}>
-                        {/* Single mobile navigation link */}
-                        <Link
-                            href="/main-tab"
-                            className={styles.mobileNavLink}
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Main Tab
-                        </Link>
-
                         <Link
                             href="/zakladki"
                             className={styles.mobileNavLink}
                             onClick={() => setIsMenuOpen(false)}
                         >
-                            Zakładki
+                            Wszystkie Zakładki
                         </Link>
+
+                        {zakladkiSections.map((section) => (
+                            <Link
+                                key={section.id}
+                                href={section.path}
+                                className={styles.mobileSubNavLink}
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                {section.title}
+                            </Link>
+                        ))}
 
                         <div className={styles.mobileCta}>
                             <Link
