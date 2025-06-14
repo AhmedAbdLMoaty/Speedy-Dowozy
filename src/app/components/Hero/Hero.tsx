@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import styles from "./Hero.module.css";
 
 const Hero = () => {
@@ -105,7 +106,6 @@ const Hero = () => {
     return (
         <section ref={sectionRef} className={styles.heroSection}>
             <div className={styles.heroBackground}>
-                {/* Only load video on desktop */}
                 {!isMobile && (
                     <video
                         ref={videoRef}
@@ -130,7 +130,6 @@ const Hero = () => {
                 ></div>
             </div>
 
-            {/* Simplified overlay for mobile */}
             <div className={styles.heroOverlay}>
                 {!isMobile && (
                     <div className={styles.speedLines}>
@@ -151,14 +150,19 @@ const Hero = () => {
                         isLoaded ? styles.loaded : ""
                     }`}
                 >
-                    <div className={styles.heroBadge}>
-                        <span className={styles.badgeIcon}>⚡</span>
-                        <span>Najszybsza dostawa w Polsce</span>
+                    <div className={styles.heroLogo}>
+                        <Image
+                            src="/images/logo2.webp"
+                            alt="Zawsze Gorące - Zawsze Na Czas"
+                            width={240}
+                            height={240}
+                            className={styles.roundLogo}
+                            priority
+                        />
                     </div>
 
                     <h1 className={styles.heroTitle}>
-                        <span className={styles.titleMain}>Speedy</span>
-                        <span className={styles.titleAccent}>Dowozy</span>
+                        Najszybsza dostawa w Polsce
                     </h1>
 
                     <p className={styles.heroSubtitle}>
@@ -166,13 +170,12 @@ const Hero = () => {
                         <span className={styles.highlightTime}>15 minut</span>
                     </p>
 
-                    {/* Hide stats on mobile for better performance */}
                     {!isMobile && (
                         <div className={styles.heroStats}>
                             {[
                                 { count: 15, label: "minut" },
-                                { count: 500, label: "restauracji" },
-                                { count: 50, label: "miast" },
+                                { count: 50, label: "restauracji" },
+                                { count: 5, label: "miast" },
                             ].map(({ count, label }) => (
                                 <div
                                     key={label}
@@ -188,32 +191,6 @@ const Hero = () => {
                             ))}
                         </div>
                     )}
-
-                    <div className={styles.heroActions}>
-                        <button
-                            className={`${styles.btnPrimary} ${styles.btnSpeed}`}
-                        >
-                            <span>Zamów Teraz</span>
-                            {!isMobile && (
-                                <div className={styles.btnSpeedEffect}></div>
-                            )}
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                />
-                            </svg>
-                        </button>
-                        <button className={styles.btnSecondary}>
-                            Dołącz jako Partner
-                        </button>
-                    </div>
                 </div>
             </div>
 

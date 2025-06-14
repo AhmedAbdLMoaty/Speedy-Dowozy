@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+    output: "export",
+    trailingSlash: true,
     experimental: {
         optimizeServerReact: false,
         optimizeCss: true,
     },
-    // Move turbo config to root level as it's now stable
     turbopack: {
         rules: {
             "*.svg": {
@@ -15,6 +16,7 @@ const nextConfig: NextConfig = {
         },
     },
     images: {
+        unoptimized: true,
         formats: ["image/webp", "image/avif"],
         minimumCacheTTL: 3600,
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],

@@ -1,0 +1,181 @@
+.managementSection {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+    padding: 4rem 0;
+    text-align: center;
+    color: white;
+}
+
+.managementSection.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.title {
+    font-family: "Cambria", serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ceoCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: slideInUp 0.8s ease 0.2s forwards;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+}
+
+.ceoCard:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.ceoIcon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.ceoName {
+    font-family: "Cambria", serif;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.ceoDescription {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.managersGrid {
+    margin-top: 4rem;
+}
+
+.managersTitle {
+    font-family: "Cambria", serif;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.managersTitle::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(45deg, #e1107d, #ff6b6b);
+    border-radius: 2px;
+}
+
+.managerCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    animation: slideInScale 0.6s ease forwards;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    width: 300px;
+    margin: 0 1rem 2rem;
+}
+
+.managerCard:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.managerIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.managerName {
+    font-family: "Cambria", serif;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.managerLocation {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInScale {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .ceoCard {
+        padding: 2rem;
+        margin: 0 0 3rem 0;
+    }
+
+    .ceoName {
+        font-size: 1.5rem;
+    }
+
+    .ceoDescription {
+        font-size: 1rem;
+    }
+
+    .managersTitle {
+        font-size: 2rem;
+    }
+
+    .managerCard {
+        width: 100%;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+    }
+}

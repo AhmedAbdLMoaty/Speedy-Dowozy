@@ -251,74 +251,32 @@
 }
 
 .heroTitle {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-family: "Cambria", serif !important;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     letter-spacing: -0.02em;
-}
-
-.titleMain {
-    display: block;
     color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     animation: titleSlowReveal 1.5s ease-out forwards;
 }
 
+.titleMain,
 .titleAccent {
-    display: block;
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d, #ff6b6b);
-    background-size: 200% 200%;
-    animation: titleFastReveal 0.8s ease-out forwards,
-        gradientShift 3s ease infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-@keyframes titleSlowReveal {
-    0% {
-        opacity: 0;
-        transform: translateX(-100px);
-        filter: blur(10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-        filter: blur(0);
-    }
-}
-
-@keyframes titleFastReveal {
-    0% {
-        opacity: 0;
-        transform: translateX(100px) scale(1.2);
-        filter: blur(20px);
-    }
-    50% {
-        transform: translateX(-10px) scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-        filter: blur(0);
-    }
-}
-
-@keyframes gradientShift {
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
+    display: none;
 }
 
 .heroSubtitle {
-    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-    margin-bottom: 20px;
-    opacity: 0.9;
+    font-family: "Cambria", serif !important;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    margin-bottom: 32px;
+    color: white !important; /* Force white color */
     font-weight: 400;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    line-height: 1.4;
 }
 
 .highlightTime {
@@ -666,7 +624,7 @@
     }
 
     .heroTitle {
-        font-size: 2rem;
+        font-size: 1.8rem;
         line-height: 1.2;
     }
 
@@ -722,5 +680,35 @@
     .heroOverlay {
         background: rgba(225, 16, 125, 0.7) !important;
         background-image: none !important;
+    }
+}
+
+/* New logo styles */
+.heroLogo {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roundLogo {
+    border-radius: 50%;
+    box-shadow: 0 8px 32px rgba(225, 16, 125, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.roundLogo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(225, 16, 125, 0.4);
+}
+
+@keyframes logoFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
     }
 }
