@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import styles from "./FranchiseSection.module.css";
-import Link from "next/link";
 
 interface ProfitItem {
     icon: string;
@@ -235,14 +234,14 @@ const FranchiseSection: React.FC = () => {
                         <div className={styles.formIcon} aria-hidden="true">
                             📋
                         </div>
-                        <h4>Formularz kontaktowy</h4>{" "}
+                        <h4>Formularz kontaktowy</h4>
                         <p>
                             Skontaktuj się z nami, aby otrzymać szczegółową
                             ofertę franczyzową i rozpocząć współpracę
                         </p>
-                        <Link href="/contact" className={styles.contactButton}>
+                        <button className={styles.contactButton} type="button">
                             Skontaktuj się z nami
-                        </Link>
+                        </button>
                     </div>
                 </div>{" "}
                 {/* Profit Potential Section */}

@@ -129,11 +129,8 @@ export default function Contact() {
                             <div className={styles.officeCard}>
                                 <h3 className={styles.officeName}>
                                     Ostrowiec Świętokrzyski
-                                </h3>{" "}
-                                <p className={styles.officeAddress}>
-                                    <strong>
-                                        Główny adres - Centrala firmy
-                                    </strong>
+                                </h3>                                <p className={styles.officeAddress}>
+                                    <strong>Główny adres - Centrala firmy</strong>
                                     <br />
                                     27-400 Ostrowiec Świętokrzyski
                                 </p>

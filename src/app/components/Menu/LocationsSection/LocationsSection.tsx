@@ -22,16 +22,15 @@ const LocationsSection = () => {
         }
 
         return () => observer.disconnect();
-    }, []);
-    const cities = [
+    }, []);    const cities = [
         {
             name: "Ostrowiec Świętokrzyski",
-            icon: "🏙️",
+            icon: "�",
             description: "Główny adres - Centrala firmy",
         },
         {
             name: "Kielce",
-            icon: "🏢",
+            icon: "�",
             description: "Oddział regionalny",
         },
         {

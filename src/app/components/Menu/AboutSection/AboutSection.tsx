@@ -74,12 +74,11 @@ const AboutSection = () => {
             <div className="container">
                 {" "}
                 <div className={styles.heroIntro}>
-                    {" "}
                     <h2 className={styles.mainTitle}>Kim jesteśmy?</h2>
                     <p className={styles.introText}>
-                        Speedy Dowozy to firma, która zajmuje się dowozem
-                        wszelkiego rodzaju posiłków serwowanych przez
-                        restauracje oraz punkty gastronomiczne.
+                        Speedy to firma, która zajmuje się dowozem wszelkiego
+                        rodzaju posiłków serwowanych przez restauracje oraz
+                        punkty gastronomiczne.
                     </p>
                 </div>
                 <div className={styles.videoSection}>
