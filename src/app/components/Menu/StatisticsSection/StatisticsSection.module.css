@@ -1,0 +1,325 @@
+.statisticsSection {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+    padding: 4rem 0;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    position: relative;
+}
+
+.statisticsSection.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.title {
+    font-family: "Cambria", serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    color: white;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heroCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: slideInUp 0.8s ease 0.2s forwards;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+}
+
+.heroCard:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.heroIcon {
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: bounce 2s infinite;
+}
+
+.heroTitle {
+    font-family: "Cambria", serif;
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.heroDescription {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.statCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    animation: slideInScale 0.6s ease forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.statCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: all 0.6s ease;
+}
+
+.statCard:hover::before {
+    left: 100%;
+}
+
+.statCard:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(225, 16, 125, 0.3);
+}
+
+.statIcon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.statCard:hover .statIcon {
+    transform: scale(1.1);
+}
+
+.statValue {
+    font-family: "Cambria", serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.statCard:hover .statValue {
+    transform: scale(1.1);
+}
+
+.statLabel {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chartContainer {
+    width: 100%;
+    max-width: 1400px;
+    margin: 4rem auto 0;
+    padding: 0 2rem;
+}
+
+.chartWrapper {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 3rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 0.8s ease 1s forwards;
+    text-align: center;
+}
+
+.chartWrapper:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(225, 16, 125, 0.5);
+}
+
+.statisticsChart {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+}
+
+.chartDescription h4 {
+    font-family: "Cambria", serif;
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.chartDescription p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin: 0;
+    font-style: italic;
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInScale {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 1024px) {
+    .chartContainer {
+        max-width: 100%;
+        padding: 0 1.5rem;
+    }
+
+    .chartWrapper {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .heroCard {
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .heroIcon {
+        font-size: 3.5rem;
+    }
+
+    .heroTitle {
+        font-size: 1.8rem;
+    }
+
+    .heroDescription {
+        font-size: 1rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .statCard {
+        padding: 2rem;
+    }
+    .statValue {
+        font-size: 2.5rem;
+    }
+
+    .chartContainer {
+        padding: 0 1rem;
+        margin-top: 3rem;
+    }
+
+    .chartWrapper {
+        padding: 2rem;
+    }
+
+    .chartDescription h4 {
+        font-size: 1.5rem;
+    }
+
+    .chartDescription p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroCard {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .statsGrid {
+        gap: 1rem;
+    }
+
+    .statCard {
+        padding: 1.5rem;
+    }
+
+    .statValue {
+        font-size: 2rem;
+    }
+
+    .chartContainer {
+        padding: 0 0.5rem;
+        margin-top: 2rem;
+    }
+
+    .chartWrapper {
+        padding: 1.5rem;
+    }
+
+    .chartDescription h4 {
+        font-size: 1.3rem;
+    }
+
+    .chartDescription p {
+        font-size: 0.9rem;
+    }
+}

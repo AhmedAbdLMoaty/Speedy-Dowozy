@@ -1,0 +1,629 @@
+.franchiseSection {
+    padding: 4rem 0;
+    text-align: center;
+    color: white;
+}
+
+.title {
+    font-family: "Cambria", serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heroCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: slideInUp 0.8s ease 0.2s forwards;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+}
+
+.heroCard:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.heroIcon {
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: buildingFloat 3s ease-in-out infinite;
+}
+
+.heroTitle {
+    font-family: "Cambria", serif;
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.heroDescription {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Featured Video Section - Full Width */
+.featuredVideoSection {
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.videoSectionTitle {
+    font-family: "Cambria", serif;
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.videoSectionSubtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.videoContainer {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.videoContainer:hover {
+    transform: translateY(-4px) scale(1.005);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.franchiseVideo {
+    width: 100%;
+    height: auto;
+    min-height: 450px;
+    max-height: 600px;
+    object-fit: cover;
+    display: block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.franchiseVideo:hover {
+    transform: scale(1.002);
+}
+
+.videoControls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.videoContainer:hover .videoControls {
+    opacity: 1;
+}
+
+.playButton {
+    background: rgba(0, 0, 0, 0.7);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.playButton:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: white;
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.playIcon {
+    font-size: 1.8rem;
+    color: white;
+    display: block;
+    line-height: 1;
+}
+
+.videoOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: white;
+    padding: 2.5rem;
+    border-radius: 0 0 25px 25px;
+    transform: translateY(100%);
+    transition: all 0.4s ease;
+}
+
+.videoContainer:hover .videoOverlay {
+    transform: translateY(0);
+}
+
+.videoTitle {
+    font-family: "Cambria", serif;
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.videoDescription {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Info Section */
+.infoSection {
+    display: flex;
+    justify-content: center;
+    margin: 4rem 0;
+}
+
+.contactForm {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 0.6s ease 0.4s forwards;
+    text-align: center;
+    max-width: 400px;
+}
+
+.contactForm:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(225, 16, 125, 0.5);
+}
+
+.formIcon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.contactForm h4 {
+    font-family: "Cambria", serif;
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.contactForm p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0 0 2rem 0;
+}
+
+.contactButton {
+    background: linear-gradient(45deg, #e1107d, #ff6b6b);
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(225, 16, 125, 0.3);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.contactButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(225, 16, 125, 0.4);
+    background: linear-gradient(45deg, #c90e6a, #e55555);
+}
+
+/* Profit Section */
+.profitSection {
+    margin: 5rem 0;
+}
+
+.profitTitle {
+    font-family: "Cambria", serif;
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 3rem;
+    position: relative;
+    text-align: center;
+    font-weight: 600;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.profitTitle::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(45deg, #e1107d, #ff6b6b);
+    border-radius: 2px;
+}
+
+.profitGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profitCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    animation: slideInScale 0.6s ease forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.profitCard::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.profitCard:hover::before {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out;
+}
+
+.profitCard:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.profitIcon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.profitCardTitle {
+    font-family: "Cambria", serif;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.profitDescription {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.profitHighlight {
+    background: linear-gradient(45deg, #e1107d, #ff6b6b);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(225, 16, 125, 0.3);
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInScale {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes buildingFloat {
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.rollupSection {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 3rem;
+    margin-top: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: slideInUp 0.8s ease 0.6s forwards;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.rollupSection:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.rollupIcon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: buildingFloat 3s ease-in-out infinite;
+}
+
+.rollupSection h3 {
+    font-family: "Cambria", serif;
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.rollupSection p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .videoSectionTitle {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .videoSectionSubtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .videoContainer {
+        margin: 0 1rem;
+        border-radius: 20px;
+    }
+
+    .franchiseVideo {
+        min-height: 280px;
+        max-height: 350px;
+        border-radius: 20px;
+    }
+
+    .videoControls {
+        opacity: 1;
+    }
+
+    .playButton {
+        width: 60px;
+        height: 60px;
+        border-width: 2px;
+    }
+
+    .playIcon {
+        font-size: 1.5rem;
+    }
+
+    .videoOverlay {
+        padding: 1.5rem;
+        position: static;
+        transform: none;
+        background: rgba(0, 0, 0, 0.85);
+        border-radius: 0 0 20px 20px;
+    }
+
+    .videoContainer:hover .videoOverlay {
+        transform: none;
+    }
+
+    .videoTitle {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .videoDescription {
+        font-size: 1rem;
+    }
+
+    .infoSection {
+        margin: 3rem 1rem;
+    }
+
+    .contactForm {
+        padding: 2rem;
+        margin: 0;
+        max-width: none;
+    }
+
+    .contactForm h4 {
+        font-size: 1.2rem;
+    }
+
+    .contactForm p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contactButton {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .heroCard {
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .heroIcon {
+        font-size: 3.5rem;
+    }
+
+    .heroTitle {
+        font-size: 1.8rem;
+    }
+
+    .heroDescription {
+        font-size: 1rem;
+    }
+
+    .profitTitle {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .profitGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .profitCard {
+        padding: 2rem;
+    }
+
+    .profitCardTitle {
+        font-size: 1.1rem;
+    }
+
+    .rollupSection {
+        padding: 2rem;
+        margin: 3rem 1rem 0;
+    }
+
+    .rollupIcon {
+        font-size: 3rem;
+    }
+
+    .rollupSection h3 {
+        font-size: 1.8rem;
+    }
+
+    .rollupSection p {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .videoContainer {
+        max-width: 1200px;
+    }
+
+    .franchiseVideo {
+        min-height: 500px;
+        max-height: 700px;
+    }
+
+    .playButton {
+        width: 80px;
+        height: 80px;
+    }
+
+    .playIcon {
+        font-size: 2rem;
+    }
+
+    .videoSectionTitle {
+        font-size: 3.2rem;
+    }
+
+    .videoSectionSubtitle {
+        font-size: 1.4rem;
+    }
+}

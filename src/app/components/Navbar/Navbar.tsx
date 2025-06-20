@@ -18,32 +18,31 @@ export default function Navbar() {
             return () => window.removeEventListener("load", handlePageLoad);
         }
     }, []);
-
-    const zakladkiSections = [
+    const menuSections = [
         {
             id: "kim-jestesmy",
             title: "Kim jesteśmy?",
-            path: "/zakladki/kim-jestesmy",
+            path: "/menu/kim-jestesmy",
         },
         {
             id: "gdzie-dzialamy",
             title: "Gdzie działamy?",
-            path: "/zakladki/gdzie-dzialamy",
+            path: "/menu/gdzie-dzialamy",
         },
-        { id: "kadra", title: "Kadra zarządzająca", path: "/zakladki/kadra" },
-        { id: "zespol", title: "Zespół Speedy", path: "/zakladki/zespol" },
+        { id: "kadra", title: "Kadra zarządzająca", path: "/menu/kadra" },
+        { id: "zespol", title: "Zespół Speedy", path: "/menu/zespol" },
         {
             id: "aplikacja",
             title: "Aplikacja Speedy",
-            path: "/zakladki/aplikacja",
+            path: "/menu/aplikacja",
         },
         {
             id: "administrator",
             title: "Strona administratora",
-            path: "/zakladki/administrator",
+            path: "/menu/administrator",
         },
-        { id: "statystyki", title: "Statystyki", path: "/zakladki/statystyki" },
-        { id: "franczyza", title: "Franczyza", path: "/zakladki/franczyza" },
+        { id: "statystyki", title: "Statystyki", path: "/menu/statystyki" },
+        { id: "franczyza", title: "Franczyza", path: "/menu/franczyza" },
     ];
 
     const toggleMenu = () => {
@@ -89,11 +88,12 @@ export default function Navbar() {
                                 onMouseEnter={handleDropdownEnter}
                                 onMouseLeave={handleDropdownLeave}
                             >
+                                {" "}
                                 <Link
-                                    href="/zakladki"
-                                    className={styles.navLink}
+                                    href="/menu"
+                                    className={styles.btnPrimary}
                                 >
-                                    Zakładki
+                                    Menu
                                     <svg
                                         className={`${styles.dropdownIcon} ${
                                             isDropdownOpen
@@ -114,11 +114,10 @@ export default function Navbar() {
                                         />
                                     </svg>
                                 </Link>
-
                                 {isDropdownOpen && (
                                     <div className={styles.dropdown}>
                                         <div className={styles.dropdownContent}>
-                                            {zakladkiSections.map((section) => (
+                                            {menuSections.map((section) => (
                                                 <Link
                                                     key={section.id}
                                                     href={section.path}
@@ -131,14 +130,10 @@ export default function Navbar() {
                                             ))}
                                         </div>
                                     </div>
-                                )}
+                                )}{" "}
                             </div>
-
-                            <Link
-                                href="/zamow-teraz"
-                                className={styles.btnPrimary}
-                            >
-                                Zamów Teraz
+                            <Link href="/contact" className={styles.btnContact}>
+                                Kontakt
                             </Link>
                         </div>
                     </div>
@@ -180,16 +175,16 @@ export default function Navbar() {
                         isMenuOpen ? styles.mobileMenuOpen : ""
                     }`}
                 >
+                    {" "}
                     <div className={styles.mobileMenuContent}>
                         <Link
-                            href="/zakladki"
+                            href="/menu"
                             className={styles.mobileNavLink}
                             onClick={() => setIsMenuOpen(false)}
                         >
-                            Wszystkie Zakładki
-                        </Link>
-
-                        {zakladkiSections.map((section) => (
+                            Całe Menu
+                        </Link>{" "}
+                        {menuSections.map((section) => (
                             <Link
                                 key={section.id}
                                 href={section.path}
@@ -199,16 +194,13 @@ export default function Navbar() {
                                 {section.title}
                             </Link>
                         ))}
-
-                        <div className={styles.mobileCta}>
-                            <Link
-                                href="/zamow-teraz"
-                                className={styles.btnPrimary}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                Zamów Teraz
-                            </Link>
-                        </div>
+                        <Link
+                            href="/contact"
+                            className={styles.mobileNavLink}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Kontakt
+                        </Link>
                     </div>
                 </div>
             </div>

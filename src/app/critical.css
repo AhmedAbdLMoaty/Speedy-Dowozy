@@ -2,19 +2,16 @@
     --color-primary: #e1107d;
     --color-background: #ffffff;
     --color-text-primary: #1a1a1a;
-    --font-family-primary: "Geist", system-ui, sans-serif;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: var(--font-family-primary);
 }
 
 html,
 body {
-    font-family: var(--font-family-primary);
     background: var(--color-background);
     color: var(--color-text-primary);
     line-height: 1.5;
@@ -22,7 +19,8 @@ body {
 }
 
 .navbar {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
     z-index: 50;

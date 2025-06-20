@@ -19,27 +19,27 @@ export default function SectionLayout({
         {
             id: "kim-jestesmy",
             title: "Kim jesteśmy?",
-            path: "/zakladki/kim-jestesmy",
+            path: "/menu/kim-jestesmy",
         },
         {
             id: "gdzie-dzialamy",
             title: "Gdzie działamy?",
-            path: "/zakladki/gdzie-dzialamy",
+            path: "/menu/gdzie-dzialamy",
         },
-        { id: "kadra", title: "Kadra zarządzająca", path: "/zakladki/kadra" },
-        { id: "zespol", title: "Zespół Speedy", path: "/zakladki/zespol" },
+        { id: "kadra", title: "Kadra zarządzająca", path: "/menu/kadra" },
+        { id: "zespol", title: "Zespół Speedy", path: "/menu/zespol" },
         {
             id: "aplikacja",
             title: "Aplikacja Speedy",
-            path: "/zakladki/aplikacja",
+            path: "/menu/aplikacja",
         },
         {
             id: "administrator",
             title: "Strona administratora",
-            path: "/zakladki/administrator",
+            path: "/menu/administrator",
         },
-        { id: "statystyki", title: "Statystyki", path: "/zakladki/statystyki" },
-        { id: "franczyza", title: "Franczyza", path: "/zakladki/franczyza" },
+        { id: "statystyki", title: "Statystyki", path: "/menu/statystyki" },
+        { id: "franczyza", title: "Franczyza", path: "/menu/franczyza" },
     ];
 
     const currentIndex = sections.findIndex((s) => s.id === sectionId);
@@ -49,16 +49,15 @@ export default function SectionLayout({
 
     return (
         <div className={styles.sectionPage}>
+            {" "}
             <div className={styles.breadcrumb}>
-                <Link href="/zakladki" className={styles.breadcrumbLink}>
-                    Wszystkie Zakładki
+                <Link href="/menu" className={styles.breadcrumbLink}>
+                    Całe Menu
                 </Link>
                 <span className={styles.breadcrumbSeparator}>›</span>
                 <span className={styles.breadcrumbCurrent}>{title}</span>
             </div>
-
             <div className={styles.container}>{children}</div>
-
             <div className={styles.navigation}>
                 {prevSection && (
                     <Link href={prevSection.path} className={styles.navButton}>
@@ -70,12 +69,10 @@ export default function SectionLayout({
                             </span>
                         </span>
                     </Link>
-                )}
-
-                <Link href="/zakladki" className={styles.allSectionsButton}>
-                    Wszystkie Zakładki
+                )}{" "}
+                <Link href="/menu" className={styles.allSectionsButton}>
+                    Całe Menu
                 </Link>
-
                 {nextSection && (
                     <Link href={nextSection.path} className={styles.navButton}>
                         <span className={styles.navText}>

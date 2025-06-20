@@ -1,52 +1,30 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./Hero.module.css";
+
+const STATS_DATA = [
+    { count: 15, label: "minut" },
+    { count: 50, label: "restauracji" },
+    { count: 5, label: "miast" },
+] as const;
 
 const Hero = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const sectionRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
 
         checkMobile();
-        window.addEventListener("resize", checkMobile);
-
         setIsLoaded(true);
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (!videoRef.current || isMobile) return;
-
-                    if (entry.isIntersecting) {
-                        videoRef.current.play().catch(() => {});
-                    } else {
-                        videoRef.current.pause();
-                    }
-                });
-            },
-            { threshold: 0.3 }
-        );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => {
-            observer.disconnect();
-            window.removeEventListener("resize", checkMobile);
-        };
-    }, [isMobile]);
-
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
     useEffect(() => {
-        if (!isLoaded || isMobile) return;
+        if (!isLoaded) return;
 
         const animateCounters = () => {
             const counters = document.querySelectorAll(
@@ -79,130 +57,81 @@ const Hero = () => {
                 setTimeout(updateCounter, 1000);
             });
         };
-
         animateCounters();
-    }, [isLoaded, isMobile]);
-
-    const scrollToNextSection = () => {
-        const nextSection =
-            document.querySelector("section:nth-of-type(2)") ||
-            document.querySelector('[data-section="features"]') ||
-            document.querySelector('[data-section="video"]') ||
-            document.querySelector("main > section:nth-child(2)");
-
-        if (nextSection) {
-            nextSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        } else {
-            window.scrollBy({
-                top: window.innerHeight,
-                behavior: "smooth",
-            });
-        }
-    };
+    }, [isLoaded]);
 
     return (
-        <section ref={sectionRef} className={styles.heroSection}>
+        <section className={styles.heroSection}>
             <div className={styles.heroBackground}>
-                {!isMobile && (
-                    <video
-                        ref={videoRef}
-                        className={styles.heroVideo}
-                        muted
-                        loop
-                        playsInline
-                        preload="none"
-                        poster="/images/logo1.webp"
-                    >
-                        <source src="/videos/video0.mp4" type="video/mp4" />
-                    </video>
-                )}
-
-                <div
-                    className={styles.mobileBgImage}
-                    style={{
-                        backgroundImage: isMobile
-                            ? "url('/images/mob-bg-optimized.webp')"
-                            : "none",
-                    }}
-                ></div>
-            </div>
-
-            <div className={styles.heroOverlay}>
-                {!isMobile && (
-                    <div className={styles.speedLines}>
-                        {Array.from({ length: 10 }, (_, i) => (
-                            <div
-                                key={i}
-                                className={styles.speedLine}
-                                style={{ animationDelay: `${i * 0.1}s` }}
-                            />
-                        ))}
+                {!isMobile ? (
+                    <div className={styles.heroImageContainer}>
+                        {" "}
+                        <Image
+                            src="/images/logo1.webp"
+                            alt="Speedy Dowozy - Background Logo"
+                            fill
+                            className={styles.heroBackgroundImage}
+                            priority
+                            sizes="100vw"
+                        />
+                        <div className={styles.backgroundOverlay}></div>
                     </div>
+                ) : (
+                    <div className={styles.mobileBgImage} />
                 )}
             </div>
-
+            <div className={styles.heroOverlay} />
             <div className="container">
                 <div
                     className={`${styles.heroContent} ${
                         isLoaded ? styles.loaded : ""
                     }`}
                 >
-                    <div className={styles.heroLogo}>
-                        <Image
-                            src="/images/logo2.webp"
-                            alt="Zawsze Gorące - Zawsze Na Czas"
-                            width={240}
-                            height={240}
-                            className={styles.roundLogo}
-                            priority
-                        />
-                    </div>
-
-                    <h1 className={styles.heroTitle}>
-                        Najszybsza dostawa w Polsce
-                    </h1>
-
-                    <p className={styles.heroSubtitle}>
-                        Ekspresowa dostawa jedzenia w{" "}
-                        <span className={styles.highlightTime}>15 minut</span>
-                    </p>
-
-                    {!isMobile && (
-                        <div className={styles.heroStats}>
-                            {[
-                                { count: 15, label: "minut" },
-                                { count: 50, label: "restauracji" },
-                                { count: 5, label: "miast" },
-                            ].map(({ count, label }) => (
-                                <div
-                                    key={label}
-                                    className={styles.stat}
-                                    data-count={count}
-                                >
-                                    <span className={styles.statNumber}>0</span>
-                                    <span className={styles.statLabel}>
-                                        {label}
-                                    </span>
-                                    <div className={styles.statProgress}></div>
-                                </div>
-                            ))}
+                    <div className={styles.heroLayout}>
+                        <div className={styles.heroTextSection}>
+                            <div className={styles.heroLogo}>
+                                <Image
+                                    src="/images/logo2.webp"
+                                    alt="Zawsze Gorące - Zawsze Na Czas"
+                                    width={200}
+                                    height={200}
+                                    className={styles.roundLogo}
+                                    priority
+                                />
+                            </div>
+                            <h1 className={styles.heroTitle}>
+                                Najszybsza dostawa w Polsce
+                            </h1>
+                            <p className={styles.heroSubtitle}>
+                                Ekspresowa dostawa jedzenia w{" "}
+                                <span className={styles.highlightTime}>
+                                    15 minut
+                                </span>
+                            </p>{" "}
+                            <div className={styles.heroStats}>
+                                {STATS_DATA.map(({ count, label }, index) => (
+                                    <div
+                                        key={label}
+                                        className={styles.stat}
+                                        data-count={count}
+                                        style={
+                                            {
+                                                "--stat-index": index,
+                                            } as React.CSSProperties
+                                        }
+                                    >
+                                        <span className={styles.statNumber}>
+                                            0
+                                        </span>
+                                        <span className={styles.statLabel}>
+                                            {label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>{" "}
                         </div>
-                    )}
+                    </div>
                 </div>
-            </div>
-
-            <div className={styles.scrollIndicator}>
-                <button
-                    className={styles.scrollSpeed}
-                    onClick={scrollToNextSection}
-                    aria-label="Scroll to next section"
-                >
-                    <div className={styles.scrollArrow}></div>
-                    <span className={styles.scrollText}>Przeżyj prędkość</span>
-                </button>
             </div>
         </section>
     );
