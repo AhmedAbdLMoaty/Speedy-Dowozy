@@ -213,7 +213,7 @@ const FranchiseSection: React.FC = () => {
                                     className={styles.playIcon}
                                     aria-hidden="true"
                                 >
-                                    {isPlaying ? "⏸️" : "▶️"}
+                                    {isPlaying ? "⏸" : "▶"}
                                 </span>
                             </button>
                         </div>
@@ -239,7 +239,13 @@ const FranchiseSection: React.FC = () => {
                             Skontaktuj się z nami, aby otrzymać szczegółową
                             ofertę franczyzową i rozpocząć współpracę
                         </p>
-                        <button className={styles.contactButton} type="button">
+                        <button
+                            className={styles.contactButton}
+                            type="button"
+                            onClick={() => {
+                                window.location.href = "/contact";
+                            }}
+                        >
                             Skontaktuj się z nami
                         </button>
                     </div>

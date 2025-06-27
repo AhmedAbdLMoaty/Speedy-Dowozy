@@ -84,7 +84,10 @@ export default function RootLayout({
                     }}
                 />
             </head>
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable}`}
+                style={{ background: "rgb(225, 16, 125)" }}
+            >
                 <Navbar />
                 {children}
             </body>

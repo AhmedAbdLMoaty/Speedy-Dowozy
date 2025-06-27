@@ -12,16 +12,9 @@ const STATS_DATA = [
 
 const Hero = () => {
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-
-        checkMobile();
         setIsLoaded(true);
-
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
     }, []);
     useEffect(() => {
         if (!isLoaded) return;
@@ -63,22 +56,17 @@ const Hero = () => {
     return (
         <section className={styles.heroSection}>
             <div className={styles.heroBackground}>
-                {!isMobile ? (
-                    <div className={styles.heroImageContainer}>
-                        {" "}
-                        <Image
-                            src="/images/logo1.webp"
-                            alt="Speedy Dowozy - Background Logo"
-                            fill
-                            className={styles.heroBackgroundImage}
-                            priority
-                            sizes="100vw"
-                        />
-                        <div className={styles.backgroundOverlay}></div>
-                    </div>
-                ) : (
-                    <div className={styles.mobileBgImage} />
-                )}
+                <div className={styles.heroImageContainer}>
+                    <Image
+                        src="/images/logo1.webp"
+                        alt="Speedy Dowozy - Background Logo"
+                        fill
+                        className={styles.heroBackgroundImage}
+                        priority
+                        sizes="100vw"
+                    />
+                    <div className={styles.backgroundOverlay}></div>
+                </div>
             </div>
             <div className={styles.heroOverlay} />
             <div className="container">

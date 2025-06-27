@@ -80,7 +80,15 @@ export default function Navbar() {
                                 Speedy Dowozy
                             </Typography>
                         </Link>
-                    </div>{" "}
+                    </div>
+                    <div className={styles.mobileOrderNowWrapper}>
+                        <a
+                            href="https://speedyjedzonko.pl"
+                            className={styles.btnOrderNowMobile}
+                        >
+                            Zamów teraz
+                        </a>
+                    </div>
                     <div className={styles.navbarDesktop}>
                         <div className={styles.navbarMenu}>
                             <div
@@ -88,7 +96,6 @@ export default function Navbar() {
                                 onMouseEnter={handleDropdownEnter}
                                 onMouseLeave={handleDropdownLeave}
                             >
-                                {" "}
                                 <Link
                                     href="/menu"
                                     className={styles.btnPrimary}
@@ -130,11 +137,17 @@ export default function Navbar() {
                                             ))}
                                         </div>
                                     </div>
-                                )}{" "}
+                                )}
                             </div>
                             <Link href="/contact" className={styles.btnContact}>
                                 Kontakt
                             </Link>
+                            <a
+                                href="https://speedyjedzonko.pl"
+                                className={styles.btnOrderNow}
+                            >
+                                Zamów teraz
+                            </a>
                         </div>
                     </div>
                     <div className={styles.mobileMenuButton}>
@@ -169,13 +182,12 @@ export default function Navbar() {
                             </svg>
                         </button>
                     </div>
-                </div>{" "}
+                </div>
                 <div
                     className={`${styles.mobileMenu} ${
                         isMenuOpen ? styles.mobileMenuOpen : ""
                     }`}
                 >
-                    {" "}
                     <div className={styles.mobileMenuContent}>
                         <Link
                             href="/menu"
@@ -183,7 +195,7 @@ export default function Navbar() {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Całe Menu
-                        </Link>{" "}
+                        </Link>
                         {menuSections.map((section) => (
                             <Link
                                 key={section.id}

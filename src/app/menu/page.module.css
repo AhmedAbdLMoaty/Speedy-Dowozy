@@ -1,6 +1,6 @@
 .menuPage {
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--color-primary);
     position: relative;
 }
 
@@ -37,14 +37,19 @@
 }
 
 .navTabs {
+    min-height: 48px;
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
     overflow-x: auto;
     padding: 0.5rem 0;
+    align-items: center;
 }
 
 .navTab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.75rem 1.5rem;
     border: none;
     background: transparent;
@@ -57,16 +62,21 @@
     overflow: hidden;
     white-space: nowrap;
     flex-shrink: 0;
+    color: #e1107d;
+    min-width: 80px;
+    min-height: 40px;
 }
 
 .navTab:hover {
     background: rgba(225, 16, 125, 0.1);
+    color: #e1107d;
     transform: translateY(-2px);
 }
 
-.navTab.active {
+.navTab.active,
+.navTab.active:focus {
     background: linear-gradient(45deg, #e1107d, #ff6b6b);
-    color: white;
+    color: #fff;
     box-shadow: 0 8px 25px rgba(225, 16, 125, 0.3);
 }
 

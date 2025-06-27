@@ -4,7 +4,8 @@
     transition: all 0.8s ease;
     padding: 4rem 0;
     text-align: center;
-    color: white;
+    color: var(--color-text-on-primary, #ffffff);
+    background: var(--color-primary);
 }
 
 .appSection.visible {
@@ -16,22 +17,26 @@
     font-family: "Cambria", serif;
     font-size: 3.5rem;
     font-weight: bold;
-    color: white;
+    color: var(--color-text-on-primary, #ffffff);
     margin-bottom: 3rem;
-    background: linear-gradient(45deg, #ffffff, #f0f0f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: color var(--transition-normal);
+}
+
+.title:hover {
+    color: var(--color-text-on-primary, #ffffff);
 }
 
 .heroCard {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
-    border-radius: 25px;
+    border-radius: var(--radius-md);
     padding: 3rem;
     margin-bottom: 4rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.6s ease;
+    border: 1px solid var(--color-border);
+    transition: background var(--transition-normal),
+        color var(--transition-normal), box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
     opacity: 0;
     transform: translateY(30px) scale(0.95);
     animation: slideInUp 0.8s ease 0.2s forwards;
@@ -39,12 +44,14 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 4rem;
+    color: white;
 }
 
 .heroCard:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
+    background: #fff;
+    color: var(--color-primary);
+    border-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
 }
 
 .heroIcon {
@@ -53,21 +60,32 @@
     display: block;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     animation: phoneFloat 3s ease-in-out infinite;
+    color: inherit;
+    transition: color var(--transition-normal);
 }
 
 .heroTitle {
     font-family: "Cambria", serif;
     font-size: 2.2rem;
-    color: white;
+    color: var(--color-text-on-primary, #ffffff);
     margin-bottom: 1.5rem;
     font-weight: 600;
+    color: inherit;
+    transition: color var(--transition-normal);
 }
 
 .heroDescription {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.7;
     font-size: 1.2rem;
     margin: 0;
+    transition: color var(--transition-normal);
+}
+
+.heroCard:hover .heroTitle,
+.heroCard:hover .heroDescription,
+.heroCard:hover .heroIcon {
+    color: var(--color-primary);
 }
 
 .featuresGrid {
@@ -78,21 +96,25 @@
 }
 
 .featureCard {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     padding: 2.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease;
+    border: 1px solid var(--color-border);
+    transition: background var(--transition-normal),
+        color var(--transition-normal), box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
     opacity: 0;
     transform: translateY(30px) scale(0.9);
     animation: slideInScale 0.6s ease forwards;
+    color: white;
 }
 
 .featureCard:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
+    background: #fff;
+    color: var(--color-primary);
+    border-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
 }
 
 .featureIcon {
@@ -100,55 +122,70 @@
     margin-bottom: 1.5rem;
     display: block;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    color: inherit;
+    transition: color var(--transition-normal);
 }
 
 .featureTitle {
     font-family: "Cambria", serif;
     font-size: 1.4rem;
-    color: white;
+    color: var(--color-text-on-primary, #ffffff);
     margin-bottom: 1rem;
     font-weight: 600;
+    color: inherit;
+    transition: color var(--transition-normal);
 }
 
 .featureDescription {
     color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-    font-size: 1rem;
-    margin: 0;
+    transition: color var(--transition-normal);
+}
+
+.featureCard:hover .featureTitle,
+.featureCard:hover .featureDescription,
+.featureCard:hover .featureIcon {
+    color: var(--color-primary);
 }
 
 .processCard {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
-    border-radius: 25px;
+    border-radius: var(--radius-md);
     padding: 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.6s ease;
+    border: 1px solid var(--color-border);
+    transition: background var(--transition-normal),
+        color var(--transition-normal), box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
     opacity: 0;
     transform: translateY(30px);
     animation: slideInUp 0.8s ease 0.8s forwards;
     max-width: 900px;
     margin: 0 auto;
+    color: white;
 }
 
 .processCard:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
+    background: #fff;
+    color: var(--color-primary);
+    border-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
 }
 
 .processCard h3 {
     font-family: "Cambria", serif;
     font-size: 2rem;
-    color: white;
+    color: var(--color-text-on-primary, #ffffff);
     margin-bottom: 2rem;
     font-weight: 600;
+    color: inherit;
+    transition: color var(--transition-normal);
 }
 
 .processSteps {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    position: relative;
 }
 
 .processStep {
@@ -156,18 +193,61 @@
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface);
     border-radius: 15px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transform-origin: left;
+    border: 1px solid transparent;
+}
+
+.processStep::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-normal);
 }
 
 .processStep:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateX(10px);
+    background: #fff;
+    color: var(--color-primary);
+    transform: translateX(10px) scale(1.03);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-dark);
+    z-index: 2;
+}
+
+.processStep:hover::before {
+    opacity: 1;
+}
+
+.processStep p,
+.processStep span,
+.processStep .stepNumber {
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.processStep:hover p,
+.processStep:hover span {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
 }
 
 .stepNumber {
-    background: linear-gradient(45deg, #e1107d, #ff6b6b);
+    background: var(--gradient-primary);
     color: white;
     width: 40px;
     height: 40px;
@@ -179,13 +259,42 @@
     font-size: 1.2rem;
     flex-shrink: 0;
     box-shadow: 0 4px 15px rgba(225, 16, 125, 0.3);
+    transition: all var(--transition-normal);
+    position: relative;
+    z-index: 1;
 }
 
-.processStep p {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    font-size: 1.1rem;
-    margin: 0;
+.processStep:hover .stepNumber {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(225, 16, 125, 0.5);
+}
+
+.processCard:hover .processStep {
+    opacity: 0.7;
+    filter: grayscale(30%);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.processCard:hover .processStep p,
+.processCard:hover .processStep span {
+    color: var(--color-primary);
+}
+
+.processCard:hover .processStep .stepNumber {
+    background: var(--color-primary);
+    color: white;
+}
+
+.processCard:hover .processStep:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    background: #fff;
+    color: var(--color-primary);
+    transform: translateX(10px) scale(1.03);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-dark);
 }
 
 @keyframes slideInUp {

@@ -38,6 +38,14 @@ const ManagementSection = () => {
                 "Jest założycielem i prezesem firmy Speedy Dowozy, której powstanie zainicjował w 2019r. Z pasją do gastronomii oraz dostaw, postanowił stworzyć platformę, która ułatwi klientom dostęp do ich ulubionych dań z lokalnych restauracji. Od samego początku istnienia firmy, pełni kluczową rolę w kształtowaniu strategii rozwoju, zarządzaniu operacjami oraz budowaniu relacji z partnerami gastronomicznymi. Dzięki jego wizji i determinacji, Speedy Dowozy zyskało zaufanie wielu klientów i stało się liderem w branży dostaw jedzenia w województwie świętokrzyskim. Pod jego przewodnictwem, firma odnotowała znaczący wzrost zamówień wśród klientów restauracji. Jako lider zespołu, planuje dalszy rozwój firmy, wprowadzając innowacje oraz nowe usługi, które będą odpowiadać na potrzeby klientów w dynamicznie zmieniającym się rynku.",
         },
         {
+            name: "Karolina Frąk",
+            role: "Kierownik Regionalny",
+            phone: "501 752 297",
+            location: "Kielce",
+            imageSrc: "/images/IMG_8598.jpeg",
+            isMainExecutive: false,
+        },
+        {
             name: "Łukasz Grodzicki",
             role: "Kierownik Regionalny",
             phone: "605 921 050",
@@ -51,14 +59,6 @@ const ManagementSection = () => {
             phone: "536 273 405",
             location: "Starachowice",
             imageSrc: "/images/IMG_8599.jpeg",
-            isMainExecutive: false,
-        },
-        {
-            name: "Karolina Frąk",
-            role: "Kierownik Regionalny",
-            phone: "501 752 297",
-            location: "Kielce",
-            imageSrc: "/images/IMG_8598.jpeg",
             isMainExecutive: false,
         },
     ];

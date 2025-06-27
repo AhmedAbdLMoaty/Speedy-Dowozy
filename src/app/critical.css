@@ -1,7 +1,7 @@
 :root {
     --color-primary: #e1107d;
-    --color-background: #ffffff;
-    --color-text-primary: #1a1a1a;
+    --color-background: #e1107d;
+    --color-text-primary: #ffffff;
 }
 
 * {
@@ -12,7 +12,7 @@
 
 html,
 body {
-    background: var(--color-background);
+    background: rgb(225, 16, 125);
     color: var(--color-text-primary);
     line-height: 1.5;
     overflow-x: hidden;
@@ -25,7 +25,7 @@ body {
     top: 0;
     z-index: 50;
     height: 4rem;
-    box-shadow: 0 4px 6px -1px rgb(225 16 125 / 0.12);
+    box-shadow: 0 4px 6px -1px rgba(225, 16, 125, 0.25);
 }
 
 .hero-section {

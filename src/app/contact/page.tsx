@@ -1,61 +1,46 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./page.module.css";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function Contact() {
     const [isVisible, setIsVisible] = useState(false);
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+    });
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState("");
     const sectionRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
+        const observer = new window.IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                }
+                if (entry.isIntersecting) setIsVisible(true);
             },
             { threshold: 0.2 }
         );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
+        if (sectionRef.current) observer.observe(sectionRef.current);
         return () => observer.disconnect();
     }, []);
-    const contactPersons = [
-        {
-            name: "Marcin Czuba",
-            role: "Prezes",
-            phone: "537 448 037",
-            location: "Centrala",
-            imageSrc:
-                "/images/att.NN20_25xozR1-qHbPFqqSgUNtpUi1PnYp6gn1ocRPWU.jpeg",
-        },
-        {
-            name: "Karolina Frąk",
-            role: "Kierownik Regionalny",
-            phone: "501 752 297",
-            location: "Kielce",
-            imageSrc: "/images/IMG_8598.jpeg",
-        },
-        {
-            name: "Łukasz Grodzicki",
-            role: "Kierownik Regionalny",
-            phone: "605 921 050",
-            location: "Ostrowiec Świętokrzyski",
-            imageSrc: "/images/placeholder-profile.svg",
-        },
-        {
-            name: "Rafał Abramczyk",
-            role: "Kierownik Regionalny",
-            phone: "536 273 405",
-            location: "Starachowice",
-            imageSrc: "/images/IMG_8599.jpeg",
-        },
-    ];
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+            setError("Wypełnij wymagane pola: imię, email, wiadomość.");
+            return;
+        }
+        setSubmitted(true);
+    };
 
     return (
         <main className={styles.main}>
@@ -67,123 +52,96 @@ export default function Contact() {
             >
                 <div className="container">
                     <h1 className={styles.title}>Kontakt</h1>
-
                     <div className={styles.contactInfoCard}>
                         <div className={styles.contactIconContainer}>
                             <div className={styles.contactIcon}>📞</div>
                         </div>
                         <h2 className={styles.contactTitle}>
-                            Skontaktuj się z nami
+                            Formularz kontaktowy
                         </h2>
                         <p className={styles.contactDescription}>
-                            Masz pytania dotyczące naszych usług lub chcesz
-                            rozpocząć współpracę? Skontaktuj się z naszym
-                            zespołem już dziś!
+                            Skorzystaj z poniższego formularza, aby skontaktować
+                            się z nami. Odpowiemy najszybciej jak to możliwe.
                         </p>
                     </div>
-
-                    <div className={styles.contactCardsGrid}>
-                        {contactPersons.map((person, index) => (
+                    <form
+                        className={styles.contactForm}
+                        onSubmit={handleSubmit}
+                        autoComplete="off"
+                        style={{ maxWidth: 520, margin: "0 auto" }}
+                    >
+                        <label htmlFor="name">Imię i nazwisko*</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={form.name}
+                            onChange={handleChange}
+                            required
+                            className={styles.input}
+                        />
+                        <label htmlFor="email">Email*</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            required
+                            className={styles.input}
+                        />
+                        <label htmlFor="phone">Telefon</label>
+                        <input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            value={form.phone}
+                            onChange={handleChange}
+                            className={styles.input}
+                        />
+                        <label htmlFor="message">Wiadomość*</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            value={form.message}
+                            onChange={handleChange}
+                            required
+                            rows={5}
+                            className={styles.textarea}
+                        />
+                        {error && (
                             <div
-                                key={index}
-                                className={styles.contactPersonCard}
-                                style={{ animationDelay: `${index * 0.2}s` }}
+                                style={{
+                                    color: "#ff4d4f",
+                                    marginBottom: 12,
+                                }}
                             >
-                                <div className={styles.profileImageContainer}>
-                                    <Image
-                                        src={person.imageSrc}
-                                        alt={`${person.name} - ${person.role}`}
-                                        width={200}
-                                        height={200}
-                                        className={styles.profileImage}
-                                    />
-                                </div>
-                                <h3 className={styles.personName}>
-                                    {person.name}
-                                </h3>
-                                <p className={styles.personRole}>
-                                    {person.role}
-                                </p>
-                                <p className={styles.personLocation}>
-                                    {person.location}
-                                </p>
-                                <Link
-                                    href={`tel:${person.phone.replace(
-                                        /\s/g,
-                                        ""
-                                    )}`}
-                                    className={styles.phoneButton}
-                                >
-                                    <span className={styles.phoneIcon}>📞</span>{" "}
-                                    {person.phone}
-                                </Link>
+                                {error}
                             </div>
-                        ))}
-                    </div>
-
-                    <div className={styles.officeLocationsContainer}>
-                        <h2 className={styles.sectionTitle}>
-                            Nasze lokalizacje
-                        </h2>{" "}
-                        <div className={styles.officeLocationsGrid}>
-                            <div className={styles.officeCard}>
-                                <h3 className={styles.officeName}>
-                                    Ostrowiec Świętokrzyski
-                                </h3>                                <p className={styles.officeAddress}>
-                                    <strong>Główny adres - Centrala firmy</strong>
-                                    <br />
-                                    27-400 Ostrowiec Świętokrzyski
-                                </p>
-                                <div className={styles.officeContact}>
-                                    <p>
-                                        <strong>Kierownik:</strong> Łukasz
-                                        Grodzicki
-                                    </p>
-                                    <p>
-                                        <strong>Telefon:</strong> 605 921 050
-                                    </p>
-                                </div>
+                        )}
+                        {submitted ? (
+                            <div
+                                style={{
+                                    color: "#10b981",
+                                    fontWeight: 600,
+                                    marginTop: 16,
+                                }}
+                            >
+                                Dziękujemy za kontakt! Odpowiemy wkrótce.
                             </div>
-
-                            <div className={styles.officeCard}>
-                                <h3 className={styles.officeName}>
-                                    Starachowice
-                                </h3>
-                                <p className={styles.officeAddress}>
-                                    Oddział regionalny
-                                    <br />
-                                    27-200 Starachowice
-                                </p>
-                                <div className={styles.officeContact}>
-                                    <p>
-                                        <strong>Kierownik:</strong> Rafał
-                                        Abramczyk
-                                    </p>
-                                    <p>
-                                        <strong>Telefon:</strong> 536 273 405
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className={styles.officeCard}>
-                                <h3 className={styles.officeName}>Kielce</h3>
-                                <p className={styles.officeAddress}>
-                                    Oddział regionalny
-                                    <br />
-                                    25-000 Kielce
-                                </p>{" "}
-                                <div className={styles.officeContact}>
-                                    <p>
-                                        <strong>Kierownik:</strong> Karolina
-                                        Frąk
-                                    </p>
-                                    <p>
-                                        <strong>Telefon:</strong> 501 752 297
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        ) : (
+                            <button
+                                className={styles.phoneButton}
+                                type="submit"
+                                style={{
+                                    width: "100%",
+                                    marginTop: 18,
+                                }}
+                            >
+                                Wyślij wiadomość
+                            </button>
+                        )}
+                    </form>
                 </div>
             </div>
         </main>

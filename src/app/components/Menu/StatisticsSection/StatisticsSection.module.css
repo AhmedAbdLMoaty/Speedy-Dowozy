@@ -5,8 +5,7 @@
     padding: 4rem 0;
     text-align: center;
     color: white;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
+    background: var(--color-primary);
     position: relative;
 }
 
@@ -19,22 +18,27 @@
     font-family: "Cambria", serif;
     font-size: 3.5rem;
     font-weight: bold;
-    margin-bottom: 3rem;
     color: white;
-    background: linear-gradient(45deg, #ffffff, #f0f0f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-normal);
+}
+
+.title:hover {
+    transform: scale(1.06);
 }
 
 .heroCard {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
     border-radius: 25px;
     padding: 3rem;
     margin-bottom: 4rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.6s ease;
+    transition: background var(--transition-normal),
+        color var(--transition-normal), box-shadow var(--transition-normal),
+        border-color var(--transition-normal),
+        transform var(--transition-normal);
     opacity: 0;
     transform: translateY(30px) scale(0.95);
     animation: slideInUp 0.8s ease 0.2s forwards;
@@ -45,9 +49,11 @@
 }
 
 .heroCard:hover {
+    background: #fff;
+    color: var(--color-primary);
+    border-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
 }
 
 .heroIcon {
@@ -56,6 +62,14 @@
     display: block;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     animation: bounce 2s infinite;
+    color: inherit;
+    transition: color var(--transition-normal),
+        transform var(--transition-normal);
+}
+
+.heroCard:hover .heroIcon {
+    color: var(--color-primary);
+    transform: scale(1.1) rotate(5deg);
 }
 
 .heroTitle {
@@ -64,6 +78,7 @@
     color: white;
     margin-bottom: 1.5rem;
     font-weight: 600;
+    transition: color var(--transition-normal);
 }
 
 .heroDescription {
@@ -71,6 +86,12 @@
     line-height: 1.7;
     font-size: 1.2rem;
     margin: 0;
+    transition: color var(--transition-normal);
+}
+
+.heroCard:hover .heroTitle,
+.heroCard:hover .heroDescription {
+    color: var(--color-primary);
 }
 
 .statsGrid {
@@ -81,17 +102,21 @@
 }
 
 .statCard {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     padding: 3rem 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease;
+    border: 1px solid var(--color-border);
+    transition: background var(--transition-normal),
+        color var(--transition-normal), box-shadow var(--transition-normal),
+        border-color var(--transition-normal),
+        transform var(--transition-normal);
     opacity: 0;
     transform: translateY(30px) scale(0.9);
     animation: slideInScale 0.6s ease forwards;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
 .statCard::before {
@@ -115,10 +140,11 @@
 }
 
 .statCard:hover {
+    background: #fff;
+    color: var(--color-primary);
+    border-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-12px) scale(1.05);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(225, 16, 125, 0.3);
 }
 
 .statIcon {
@@ -126,34 +152,45 @@
     margin-bottom: 1.5rem;
     display: block;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-    transition: all 0.3s ease;
+    transition: color var(--transition-normal),
+        transform var(--transition-normal);
 }
 
 .statCard:hover .statIcon {
-    transform: scale(1.1);
+    color: var(--color-primary);
 }
 
 .statValue {
     font-family: "Cambria", serif;
     font-size: 3rem;
     font-weight: bold;
-    color: white;
+    color: #fff;
     margin-bottom: 1rem;
     line-height: 1;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
-.statCard:hover .statValue {
+.statCard[data-stat="orders"] .statValue {
+    color: #bfa16a;
+}
+
+.statCard:hover .statValue,
+.statCard[data-stat="orders"]:hover .statValue {
     transform: scale(1.1);
+    color: #bfa16a;
 }
 
 .statLabel {
-    color: rgba(255, 255, 255, 0.9);
+    color: #fff;
     font-size: 1.1rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+.statCard:hover .statLabel {
+    color: #111;
 }
 
 .chartContainer {
@@ -164,23 +201,27 @@
 }
 
 .chartWrapper {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
-    border-radius: 25px;
+    border-radius: var(--radius-lg);
     padding: 3rem;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.6s ease;
+    border: 2px solid var(--color-border);
+    transition: background var(--transition-normal),
+        box-shadow var(--transition-normal),
+        border-color var(--transition-normal),
+        transform var(--transition-normal);
     opacity: 0;
     transform: translateY(30px);
     animation: slideInUp 0.8s ease 1s forwards;
     text-align: center;
+    box-shadow: var(--shadow-sm);
 }
 
 .chartWrapper:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(225, 16, 125, 0.5);
+    background: #fff;
+    border-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px) scale(1.02);
 }
 
 .statisticsChart {
@@ -198,6 +239,7 @@
     color: white;
     margin-bottom: 1rem;
     font-weight: 600;
+    transition: color var(--transition-normal);
 }
 
 .chartDescription p {
@@ -206,6 +248,12 @@
     font-size: 1.1rem;
     margin: 0;
     font-style: italic;
+    transition: color var(--transition-normal);
+}
+
+.chartWrapper:hover .chartDescription h4,
+.chartWrapper:hover .chartDescription p {
+    color: var(--color-primary);
 }
 
 @keyframes slideInUp {

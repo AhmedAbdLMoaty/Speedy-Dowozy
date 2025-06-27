@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import styles from "./StatisticsSection.module.css";
 
 const StatisticsSection = () => {
@@ -69,14 +68,14 @@ const StatisticsSection = () => {
             value: counters.orders,
             suffix: "+",
             label: "Zrealizowanych zamówień",
-            color: "#3b82f6",
+            color: "#bfa16a",
         },
         {
             icon: "📈",
             value: counters.growth,
             suffix: "%",
             label: "Wzrost rok do roku",
-            color: "#f59e0b",
+            color: "#59096b",
         },
     ];
 
@@ -120,27 +119,6 @@ const StatisticsSection = () => {
                             <div className={styles.statLabel}>{stat.label}</div>
                         </div>
                     ))}
-                </div>
-            </div>{" "}
-            <div className={styles.chartContainer}>
-                <div className={styles.chartWrapper}>
-                    <Image
-                        src="/images/Picture1.png"
-                        alt="Wykres statystyk przedstawiający rzeczywisty wzrost zleceń"
-                        width={1200}
-                        height={600}
-                        className={styles.statisticsChart}
-                        priority
-                        sizes="(max-width: 480px) 100vw, (max-width: 768px) 95vw, (max-width: 1024px) 90vw, 1200px"
-                    />
-                    <div className={styles.chartDescription}>
-                        <h4>Wykres statystyk</h4>
-                        <p>
-                            Wykres przedstawiający rzeczywistą ilość zleceń z
-                            ostatnich lat pracy przy 50 lokalach które
-                            obsługujemy.
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>

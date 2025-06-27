@@ -1,30 +1,30 @@
 .navbar {
-    background: rgba(255, 255, 255, 0.95);
+    background: #fff;
     backdrop-filter: blur(20px);
-    box-shadow: 0 4px 6px -1px rgba(225, 16, 125, 0.12);
+    box-shadow: var(--shadow-md);
     position: sticky;
     top: 0;
     z-index: 999;
-    border-bottom: 1px solid rgba(225, 16, 125, 0.1);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .navbarContainer {
-    max-width: 1280px;
+    max-width: var(--container-xl);
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 var(--spacing-md);
     position: relative;
     z-index: 2;
 }
 
 @media (min-width: 640px) {
     .navbarContainer {
-        padding: 0 1.5rem;
+        padding: 0 var(--spacing-lg);
     }
 }
 
 @media (min-width: 1024px) {
     .navbarContainer {
-        padding: 0 2rem;
+        padding: 0 var(--spacing-xl);
     }
 }
 
@@ -34,6 +34,33 @@
     align-items: center;
     height: 4rem;
     width: 100%;
+}
+
+@media (max-width: 767px) {
+    .navbarContent {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+    }
+    .navbarLogo {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    .mobileOrderNowWrapper {
+        flex-shrink: 0;
+        margin-left: 0.2rem;
+    }
+    .mobileMenuButton {
+        flex-shrink: 0;
+        margin-left: 0.2rem;
+    }
+    .btnOrderNowMobile {
+        white-space: nowrap;
+        min-width: 0;
+        font-size: 1rem;
+        padding: 0.55rem 1.1rem;
+        height: 2.3rem;
+        line-height: 1.1;
+    }
 }
 
 .navbarLogo {
@@ -145,14 +172,14 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #e1107d, #ff6b6b);
+    background: var(--gradient-primary);
     transition: width 0.4s ease;
 }
 
 .navLink:hover {
     transform: translateX(3px);
-    color: #e1107d;
-    background-color: rgba(225, 16, 125, 0.05);
+    color: var(--color-primary);
+    background-color: var(--color-accent);
 }
 
 .navLink:hover::after {
@@ -164,7 +191,7 @@
     position: relative;
     background-color: var(--color-primary);
     color: white;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--radius-md);
     font-family: var(--font-family-primary);
     font-weight: var(--font-weight-medium);
@@ -201,8 +228,8 @@
     transform: rotate(30deg);
 }
 
-.btnPrimary:hover {
-    background-color: #be0a69;
+.btnPrimary:hover:not(:disabled) {
+    background: var(--color-primary-dark);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(225, 16, 125, 0.3);
 }
@@ -257,6 +284,71 @@
     left: 100%;
 }
 
+.btnOrderNow {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #e1107d, #ff6b6b);
+    border-radius: 50px;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(225, 16, 125, 0.18);
+}
+
+.btnOrderNow::after {
+    content: "";
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    top: 0;
+    left: -30%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0)
+    );
+    transform: skewX(-25deg);
+    transition: all 0.8s ease;
+}
+
+.btnOrderNow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(225, 16, 125, 0.22);
+    background: linear-gradient(135deg, #c70c6c, #ff4f58);
+}
+
+.btnOrderNow:hover::after {
+    transition: all 0.8s ease;
+    left: 100%;
+}
+
+.mobileOrderNow {
+    display: block;
+    color: #fff;
+    background: linear-gradient(135deg, #e1107d, #ff6b6b);
+    padding: 0.9rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 12px rgba(225, 16, 125, 0.18);
+    transition: all 0.3s ease;
+}
+
+.mobileOrderNow:hover {
+    background: linear-gradient(135deg, #c70c6c, #ff4f58);
+    box-shadow: 0 6px 15px rgba(225, 16, 125, 0.22);
+}
+
 .dropdownIcon {
     width: 1rem;
     height: 1rem;
@@ -275,11 +367,11 @@
     top: calc(100% + 0.5rem);
     width: 100vw;
     max-width: 56rem;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
-    box-shadow: 0 20px 25px -5px rgba(225, 16, 125, 0.15);
+    box-shadow: var(--shadow-lg);
     border-radius: 12px;
-    border: 1px solid rgba(225, 16, 125, 0.1);
+    border: 1px solid var(--color-border);
     padding: 2rem;
     transform-origin: top center;
     animation: menuAppear 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -346,8 +438,8 @@
     color: #ec4899;
 }
 .menuIconBlue {
-    background-color: #dbeafe;
-    color: #2563eb;
+    background-color: #ffebf5;
+    color: #e1107d;
 }
 .menuIconGreen {
     background-color: #dcfce7;
@@ -481,7 +573,7 @@
 }
 
 .mobileMenuOpen {
-    max-height: 40rem;
+    max-height: 100vh;
     opacity: 1;
 }
 
@@ -493,6 +585,17 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+}
+
+@media (max-width: 600px) {
+    .mobileMenuContent {
+        max-height: 90vh;
+        padding-bottom: 2.5rem;
+    }
 }
 
 .mobileDropdown {
@@ -531,6 +634,12 @@
     flex-direction: column;
     gap: 0.5rem;
     animation: slideIn 0.2s ease-in-out;
+    position: absolute;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    z-index: 1000;
 }
 
 @keyframes slideIn {
@@ -623,13 +732,12 @@
     top: 100%;
     left: 0;
     min-width: 280px;
-    background: rgba(255, 255, 255, 0.95);
+    background: #fff;
     backdrop-filter: blur(20px);
     border-radius: 12px;
-    box-shadow: 0 20px 25px -5px rgba(225, 16, 125, 0.15),
-        0 10px 10px -5px rgba(225, 16, 125, 0.08);
-    border: 1px solid rgba(225, 16, 125, 0.1);
-    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+    overflow: visible;
     z-index: 1000;
     animation: dropdownSlideIn 0.2s ease-out;
 }
@@ -652,9 +760,9 @@
 }
 
 .dropdownItem:hover {
-    background-color: rgba(225, 16, 125, 0.05);
-    color: #e1107d;
-    border-left-color: #e1107d;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
     transform: translateX(3px);
 }
 
@@ -742,5 +850,76 @@
     .logoImage {
         width: 50px;
         height: 50px;
+    }
+}
+
+.mobileOrderNowWrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    height: 100%;
+}
+
+.btnOrderNowMobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #e1107d, #ff6b6b);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(225, 16, 125, 0.13);
+    margin-left: 0.5rem;
+    height: 2.3rem;
+    min-width: 0;
+    border: none;
+    white-space: nowrap;
+    line-height: 1.1;
+}
+
+.btnOrderNowMobile:hover {
+    background: linear-gradient(135deg, #c70c6c, #ff4f58);
+    box-shadow: 0 4px 12px rgba(225, 16, 125, 0.18);
+}
+
+@media (min-width: 768px) {
+    .mobileOrderNowWrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbarDesktop {
+        display: none !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbarContent {
+        gap: 0.2rem;
+    }
+    .logoImage {
+        width: 74px;
+        height: 74px;
+    }
+    .logoText {
+        display: none;
+    }
+    .btnOrderNowMobile {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        height: 2.2rem;
+        min-width: 0;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 50px;
+    }
+    .mobileMenuButton {
+        margin-left: 0.1rem;
     }
 }

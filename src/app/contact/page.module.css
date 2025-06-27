@@ -1,16 +1,15 @@
 .main {
-    padding: 4rem 0;
+    padding: var(--spacing-2xl) 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
     position: relative;
 }
 
 .contactSection {
     opacity: 0;
     transform: translateY(50px);
-    transition: all 0.8s ease;
-    color: white;
+    transition: all 0.8s var(--ease-out-cubic);
+    color: #4a0e2e;
 }
 
 .contactSection.visible {
@@ -19,112 +18,87 @@
 }
 
 .title {
-    font-family: "Cambria", serif;
-    font-size: 3.5rem;
-    font-weight: bold;
+    font-family: var(--font-family-primary);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-bold);
     text-align: center;
-    margin-bottom: 3rem;
-    color: white;
-    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    margin-bottom: var(--spacing-xl);
+    color: #880e4f;
+    background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .contactInfoCard {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border-radius: 25px;
-    padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.6s ease;
+    transition: all var(--transition-normal);
     opacity: 0;
     transform: translateY(30px);
-    animation: slideInUp 0.8s ease 0.2s forwards;
+    animation: slideInUp 0.8s var(--ease-out-cubic) 0.2s forwards;
     max-width: 800px;
-    margin: 0 auto 4rem;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    margin: 0 auto var(--spacing-2xl);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+    border: 1px solid rgba(248, 187, 208, 0.3);
 }
 
 .contactInfoCard:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
-}
-
-.contactIconContainer {
-    margin-bottom: 1.5rem;
-}
-
-.contactIcon {
-    font-size: 4rem;
-    display: inline-block;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(233, 30, 99, 0.15);
+    background: rgba(255, 255, 255, 1);
 }
 
 .contactTitle {
-    font-family: "Cambria", serif;
-    font-size: 2.2rem;
-    color: white;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
+    color: #880e4f;
+    font-size: var(--text-2xl);
+    margin-bottom: var(--spacing-md);
 }
 
 .contactDescription {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.7;
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-.contactCardsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    max-width: 1200px;
-    margin: 0 auto 5rem;
+    color: #6a1b47;
+    line-height: 1.6;
 }
 
 .contactPersonCard {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 2.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.4s ease;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
     opacity: 0;
     transform: translateY(30px);
-    animation: slideInUp 0.7s ease forwards;
+    animation: slideInUp 0.7s var(--ease-out-cubic) forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    box-shadow: 0 4px 20px rgba(233, 30, 99, 0.08);
+    border: 1px solid rgba(248, 187, 208, 0.2);
 }
 
 .contactPersonCard:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.12);
 }
 
 .profileImageContainer {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 1.5rem;
-    border: 3px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: var(--spacing-lg);
+    border: 4px solid #f8bbd0;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
 }
 
 .profileImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s var(--ease-out-cubic);
 }
 
 .contactPersonCard:hover .profileImage {
@@ -132,27 +106,27 @@
 }
 
 .personName {
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
     margin: 0.5rem 0;
-    color: white;
+    color: #880e4f;
 }
 
 .personRole {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
+    color: #e91e63;
+    font-size: 1rem;
     margin: 0.2rem 0;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .personLocation {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1rem;
+    color: #ad1457;
+    font-size: 0.95rem;
     margin-bottom: 1.2rem;
 }
 
 .phoneButton {
-    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
     border: none;
     color: white;
     padding: 0.8rem 1.8rem;
@@ -161,35 +135,35 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
     text-decoration: none;
     margin-top: auto;
-    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
-    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
 }
 
 .phoneButton:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(135deg, #1d4ed8, #2563eb);
-    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 6px 25px rgba(233, 30, 99, 0.4);
+    background: linear-gradient(135deg, #ec407a 0%, #d81b60 100%);
 }
 
 .phoneIcon {
     font-size: 1.2rem;
-    color: white;
 }
 
 .sectionTitle {
-    font-size: 2.2rem;
+    font-size: var(--text-2xl);
     text-align: center;
-    margin-bottom: 2.5rem;
-    font-weight: 600;
-    color: white;
+    margin-bottom: var(--spacing-lg);
+    font-weight: var(--font-weight-semibold);
+    color: #880e4f;
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
-    padding-bottom: 1rem;
+    padding-bottom: var(--spacing-md);
 }
 
 .sectionTitle::after {
@@ -199,47 +173,43 @@
     left: 25%;
     width: 50%;
     height: 3px;
-    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    background: linear-gradient(90deg, #e91e63 0%, #c2185b 100%);
     border-radius: 2px;
 }
 
 .officeLocationsContainer {
-    margin-bottom: 5rem;
+    margin-bottom: var(--spacing-2xl);
 }
 
 .officeLocationsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    gap: var(--spacing-xl);
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .officeCard {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 2.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.4s ease;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
     opacity: 0;
     transform: translateY(30px);
-    animation: slideInUp 0.7s ease forwards;
+    animation: slideInUp 0.7s var(--ease-out-cubic) forwards;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    box-shadow: 0 4px 20px rgba(233, 30, 99, 0.08);
+    border: 1px solid rgba(248, 187, 208, 0.2);
 }
 
 .officeCard:hover {
-    transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(233, 30, 99, 0.12);
 }
 
 .officeCard:first-child {
-    border: 2px solid rgba(30, 64, 175, 0.3);
-    box-shadow: 0 8px 32px rgba(30, 64, 175, 0.1);
+    box-shadow: 0 8px 32px rgba(233, 30, 99, 0.15);
 }
 
 .officeCard:first-child::before {
@@ -247,31 +217,31 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
     color: white;
     padding: 5px 15px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
 }
 
 .officeName {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-md);
+    color: #880e4f;
 }
 
 .officeAddress {
-    color: white;
+    color: #6a1b47;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-lg);
     font-size: 1.1rem;
 }
 
 .officeContact {
-    color: var(--color-text-secondary);
+    color: #ad1457;
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -281,8 +251,95 @@
 }
 
 .officeContact strong {
-    color: var(--color-text-primary);
+    color: #880e4f;
+    font-weight: var(--font-weight-semibold);
+}
+
+.contactForm {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    max-width: 520px;
+    margin: 0 auto var(--spacing-xl) auto;
+    box-shadow: 0 10px 40px rgba(233, 30, 99, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: stretch;
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    animation: formFadeIn 0.8s var(--ease-out-cubic) 0.2s forwards;
+    border: 1px solid rgba(248, 187, 208, 0.3);
+}
+
+.contactForm:hover {
+    box-shadow: 0 15px 50px rgba(233, 30, 99, 0.15);
+}
+
+.contactForm label {
+    display: block;
+    font-size: 0.95rem;
+    color: #880e4f;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.5rem;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    background: #fce4ec;
+    font-size: 1rem;
+    color: #4a0e2e;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s;
+    outline: none;
+    font-family: inherit;
+    border: 2px solid transparent;
+}
+
+.input:hover,
+.textarea:hover {
+    background: #f8bbd0;
+}
+
+.input:focus,
+.textarea:focus {
+    background: white;
+    border-color: #e91e63;
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contactIcon {
+    font-size: 3.5rem;
+    display: inline-block;
+    filter: drop-shadow(0 2px 4px rgba(233, 30, 99, 0.1));
+}
+
+/* Success and Error Messages */
+.errorMessage {
+    color: #c62828;
+    background: #ffcdd2;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.successMessage {
+    color: #2e7d32;
+    background: #c8e6c9;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
     font-weight: 600;
+    text-align: center;
 }
 
 @keyframes slideInUp {
@@ -296,9 +353,20 @@
     }
 }
 
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 @media (max-width: 768px) {
     .title {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
 
     .contactInfoCard {
@@ -310,15 +378,34 @@
     }
 
     .profileImageContainer {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
     }
 
     .personName {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .officeCard {
-        padding: 2rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .contactForm {
+        padding: 1.5rem;
+        max-width: 100%;
+        box-shadow: 0 5px 20px rgba(233, 30, 99, 0.08);
+    }
+
+    .input,
+    .textarea {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .contactForm label {
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
     }
 }
