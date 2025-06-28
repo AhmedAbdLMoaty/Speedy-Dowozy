@@ -73,7 +73,6 @@ const ManagementSection = () => {
             <div className="container">
                 <h2 className={styles.title}>Kadra zarządzająca</h2>
 
-                {/* CEO Card */}
                 {managementTeam
                     .filter((member) => member.isMainExecutive)
                     .map((executive, index) => (
@@ -108,7 +107,6 @@ const ManagementSection = () => {
                         </div>
                     ))}
 
-                {/* Regional Managers */}
                 <div className={styles.managersGrid}>
                     <h3 className={styles.managersTitle}>
                         Kierownicy Regionalni

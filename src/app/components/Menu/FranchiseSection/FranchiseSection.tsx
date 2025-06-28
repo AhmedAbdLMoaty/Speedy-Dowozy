@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./FranchiseSection.module.css";
 
 interface ProfitItem {
@@ -11,14 +11,24 @@ interface ProfitItem {
 }
 
 const FranchiseSection: React.FC = () => {
-    const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [showOverlay, setShowOverlay] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [hasMounted, setHasMounted] = useState(false);
+    const overlayTimeout = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        // Update document title and meta description for better SEO
+        setHasMounted(true);
+        if (typeof window !== "undefined") {
+            setIsMobile(window.innerWidth <= 768);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!hasMounted) return;
         document.title =
             "Franczyza Speedy Dowozy - Rozpocznij własny biznes w dostawach jedzenia";
-        // Update meta description
+
         const metaDescription = document.querySelector(
             'meta[name="description"]'
         );
@@ -35,7 +45,6 @@ const FranchiseSection: React.FC = () => {
             document.head.appendChild(meta);
         }
 
-        // Add structured data for better SEO
         const structuredData = {
             "@context": "https://schema.org",
             "@type": "BusinessOpportunity",
@@ -65,35 +74,47 @@ const FranchiseSection: React.FC = () => {
         script.text = JSON.stringify(structuredData);
         document.head.appendChild(script);
 
+        return () => {
+            document.head.removeChild(script);
+        };
+    }, [hasMounted]);
+
+    useEffect(() => {
+        if (!hasMounted) return;
         const videoObserver = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    if (videoRef.current) {
-                        videoRef.current.play().catch(() => {});
-                        setIsPlaying(true);
-                    }
-                } else {
-                    if (videoRef.current) {
-                        videoRef.current.pause();
-                        setIsPlaying(false);
-                    }
+                if (entry.isIntersecting && videoRef.current) {
+                    videoRef.current.play().catch(() => {});
+                } else if (videoRef.current) {
+                    videoRef.current.pause();
                 }
             },
             { threshold: 0.5 }
         );
-
-        if (videoRef.current) {
-            videoObserver.observe(videoRef.current);
+        const currentVideo = videoRef.current;
+        if (currentVideo) {
+            videoObserver.observe(currentVideo);
         }
-
-        const currentVideoRef = videoRef.current;
-
         return () => {
-            if (currentVideoRef) {
-                videoObserver.unobserve(currentVideoRef);
+            if (currentVideo) {
+                videoObserver.unobserve(currentVideo);
+                currentVideo.pause();
+                currentVideo.removeAttribute("src");
+                currentVideo.load();
             }
         };
-    }, []);
+    }, [hasMounted]);
+
+    const handleVideoContainerClick = () => {
+        if (isMobile) {
+            setShowOverlay(true);
+            if (overlayTimeout.current) clearTimeout(overlayTimeout.current);
+            overlayTimeout.current = setTimeout(
+                () => setShowOverlay(false),
+                2000
+            );
+        }
+    };
 
     const profitData: ProfitItem[] = [
         {
@@ -133,19 +154,6 @@ const FranchiseSection: React.FC = () => {
         <div className={styles.franchiseSection}>
             <div className="container">
                 <h2 className={styles.title}>Franczyza</h2>
-                <div className={styles.heroCard}>
-                    <div className={styles.heroIcon}>🏢</div>
-                    <h3 className={styles.heroTitle}>
-                        Zostań partnerem naszej sieci dostaw jedzenia!
-                    </h3>
-                    <p className={styles.heroDescription}>
-                        Szukasz dochodowego pomysłu na biznes z niskim progiem
-                        wejścia i dużym potencjałem zysku? Dołącz do naszej
-                        sieci franczyzowej i rozwijaj lokalny rynek dowozów
-                        jedzenia przy wsparciu nowoczesnej aplikacji mobilnej!
-                    </p>
-                </div>{" "}
-                {/* Featured Video Section - Full Width & Centered */}
                 <section
                     className={styles.featuredVideoSection}
                     aria-labelledby="franchise-video-heading"
@@ -162,17 +170,54 @@ const FranchiseSection: React.FC = () => {
                             franczyzą
                         </p>
                     </header>
-                    <div className={styles.videoContainer}>
+                    <div
+                        className={styles.videoContainer}
+                        onClick={handleVideoContainerClick}
+                    >
+                        <div
+                            className={
+                                styles.videoOverlay +
+                                ((showOverlay && isMobile) || !isMobile
+                                    ? " " + styles.visible
+                                    : "")
+                            }
+                            style={{
+                                pointerEvents: "none",
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                width: "100%",
+                                position: "absolute",
+                                zIndex: 2,
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                justifyContent: "flex-start",
+                                padding: "2rem 1rem 0 1rem",
+                                background:
+                                    "linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 80%, transparent 100%)",
+                            }}
+                        >
+                            <h4 className={styles.videoTitle}>
+                                Franczyza Speedy Dowozy
+                            </h4>
+                            <p className={styles.videoDescription}>
+                                Poznaj szczegóły współpracy, potencjał zysków i
+                                wsparcie dla franczyzobiorców
+                            </p>
+                        </div>
                         <video
                             ref={videoRef}
                             className={styles.franchiseVideo}
-                            muted
                             loop
                             playsInline
+                            controls
                             poster="/images/speedy.webp"
                             preload="metadata"
-                            aria-label="Film prezentacyjny franczyzy Speedy Dowozy - dowiedz się jak rozpocząć własny biznes w branży dostaw jedzenia"
+                            aria-label="Film prezentacyjny franczyzy Speedy Dowozy"
                             title="Franczyza Speedy Dowozy - Twój sukces w dostawach jedzenia"
+                            style={{ position: "relative", zIndex: 1 }}
+                            onCanPlay={() => {}}
                         >
                             <source src="/videos/video2.mp4" type="video/mp4" />
                             <track
@@ -182,53 +227,21 @@ const FranchiseSection: React.FC = () => {
                             />
                             Twoja przeglądarka nie obsługuje odtwarzania wideo.
                         </video>
-                        <div
-                            className={styles.videoControls}
-                            role="group"
-                            aria-label="Kontrolki wideo"
-                        >
-                            <button
-                                className={styles.playButton}
-                                onClick={() => {
-                                    if (videoRef.current) {
-                                        if (videoRef.current.paused) {
-                                            videoRef.current.play();
-                                        } else {
-                                            videoRef.current.pause();
-                                        }
-                                    }
-                                }}
-                                aria-label={
-                                    isPlaying
-                                        ? "Zatrzymaj wideo"
-                                        : "Odtwórz wideo"
-                                }
-                                title={
-                                    isPlaying
-                                        ? "Zatrzymaj wideo"
-                                        : "Odtwórz wideo"
-                                }
-                            >
-                                <span
-                                    className={styles.playIcon}
-                                    aria-hidden="true"
-                                >
-                                    {isPlaying ? "⏸" : "▶"}
-                                </span>
-                            </button>
-                        </div>
-                        <div className={styles.videoOverlay}>
-                            <h4 className={styles.videoTitle}>
-                                Franczyza Speedy Dowozy
-                            </h4>
-                            <p className={styles.videoDescription}>
-                                Poznaj szczegóły współpracy, potencjał zysków i
-                                wsparcie dla franczyzobiorców
-                            </p>
-                        </div>
                     </div>
                 </section>
-                {/* Contact & Information Section */}
+                <div className={styles.heroCard}>
+                    <div className={styles.heroIcon}>🏢</div>
+                    <h3 className={styles.heroTitle}>
+                        Zostań partnerem naszej sieci dostaw jedzenia!
+                    </h3>
+                    <p className={styles.heroDescription}>
+                        Szukasz dochodowego pomysłu na biznes z niskim progiem
+                        wejścia i dużym potencjałem zysku? Dołącz do naszej
+                        sieci franczyzowej i rozwijaj lokalny rynek dowozów
+                        jedzenia przy wsparciu nowoczesnej aplikacji mobilnej!
+                    </p>
+                </div>
+
                 <div className={styles.infoSection}>
                     <div className={styles.contactForm}>
                         <div className={styles.formIcon} aria-hidden="true">
@@ -242,15 +255,13 @@ const FranchiseSection: React.FC = () => {
                         <button
                             className={styles.contactButton}
                             type="button"
-                            onClick={() => {
-                                window.location.href = "/contact";
-                            }}
+                            onClick={() => (window.location.href = "/contact")}
                         >
                             Skontaktuj się z nami
                         </button>
                     </div>
-                </div>{" "}
-                {/* Profit Potential Section */}
+                </div>
+
                 <section
                     className={styles.profitSection}
                     aria-labelledby="profit-heading"
@@ -260,6 +271,7 @@ const FranchiseSection: React.FC = () => {
                             Potencjał zysków
                         </h3>
                     </header>
+
                     <div className={styles.profitGrid}>
                         {profitData.map((profit, index) => (
                             <article
@@ -286,7 +298,7 @@ const FranchiseSection: React.FC = () => {
                         ))}
                     </div>
                 </section>
-                {/* Business Development Section */}
+
                 <section
                     className={styles.rollupSection}
                     aria-labelledby="rollup-heading"

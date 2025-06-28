@@ -16,16 +16,16 @@
 }
 
 .title:hover {
-    color: var(--color-text-on-primary);
     transform: scale(1.02);
 }
 
+/* Hero Card */
 .heroCard {
     background: var(--color-surface);
     backdrop-filter: blur(20px);
     border-radius: var(--radius-lg);
     padding: 3rem;
-    margin-bottom: 4rem;
+    margin: 0 auto 4rem;
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-sm);
     transition: var(--transition-normal);
@@ -33,9 +33,6 @@
     transform: translateY(30px) scale(0.95);
     animation: slideInUp 0.8s ease 0.2s forwards;
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 4rem;
 }
 
 .heroCard:hover {
@@ -83,11 +80,13 @@
     color: #000000;
 }
 
-/* Featured Video Section - Full Width */
+/* Featured Video Section */
 .featuredVideoSection {
     margin: 4rem 0;
     text-align: center;
     background: var(--color-primary);
+    width: 100%;
+    overflow: hidden;
 }
 
 .videoSectionTitle {
@@ -100,28 +99,23 @@
 }
 
 .videoSectionTitle:hover {
-    color: var(--color-text-on-primary);
     transform: scale(1.02);
 }
 
 .videoSectionSubtitle {
     color: var(--color-text-on-primary);
     font-size: 1.3rem;
-    margin-bottom: 3rem;
+    margin: 0 auto 3rem;
     max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
     line-height: 1.6;
     transition: var(--transition-normal);
-}
-
-.videoSectionSubtitle:hover {
-    color: #000000;
+    padding: 0 1rem;
 }
 
 .videoContainer {
     position: relative;
     max-width: 1000px;
+    width: calc(100% - 2rem);
     margin: 0 auto;
     border-radius: var(--radius-xl);
     overflow: hidden;
@@ -157,12 +151,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.videoContainer:hover .videoControls {
-    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 .playButton {
@@ -195,45 +184,62 @@
 }
 
 .videoOverlay {
-    position: absolute;
-    bottom: 0;
+    pointer-events: none;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    color: white;
-    padding: 2.5rem;
-    border-radius: 0 0 25px 25px;
-    transform: translateY(100%);
-    transition: all 0.4s ease;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem 4.5rem 1rem;
+    opacity: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.1) 80%,
+        transparent 100%
+    );
+    transition: opacity 0.3s;
 }
 
-.videoContainer:hover .videoOverlay {
-    transform: translateY(0);
+.videoOverlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.videoContainer:hover .videoOverlay,
+.videoContainer:focus-within .videoOverlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.videoOverlay:hover {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.videoContainer:not(:hover):not(:focus-within) .videoOverlay {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .videoTitle {
     font-family: "Cambria", serif;
-    color: var(--color-text-on-primary);
+    color: white;
     font-size: 1.5rem;
     margin-bottom: 0.8rem;
     font-weight: 600;
-    transition: var(--transition-normal);
-}
-
-.videoContainer:hover .videoTitle {
-    color: var(--color-primary);
 }
 
 .videoDescription {
-    color: var(--color-text-on-primary);
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.7;
     font-size: 1.1rem;
     margin: 0;
-    transition: var(--transition-normal);
-}
-
-.videoContainer:hover .videoDescription {
-    color: #000000;
 }
 
 /* Info Section */
@@ -316,24 +322,10 @@
     animation: buttonPop 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-@keyframes buttonPop {
-    0% {
-        transform: scale(0.95);
-    }
-    60% {
-        transform: scale(1.08);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
 .contactButton:hover {
     transform: translateY(-2px) scale(1.04);
     box-shadow: var(--shadow-lg);
     background: var(--gradient-accent);
-    color: var(--color-text-on-primary);
-    animation: buttonPop 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 /* Profit Section */
@@ -354,7 +346,6 @@
 }
 
 .profitTitle:hover {
-    color: var(--color-text-on-primary);
     transform: scale(1.02);
 }
 
@@ -424,7 +415,6 @@
     transform: translateY(-12px) scale(1.05);
     box-shadow: var(--shadow-lg);
     background: white;
-    color: var(--color-text-primary);
 }
 
 .profitIcon {
@@ -465,7 +455,6 @@
 }
 
 .profitHighlight {
-    align-self: center;
     background: var(--gradient-primary);
     color: var(--color-text-on-primary);
     padding: 0.85rem 2.2rem;
@@ -473,88 +462,35 @@
     font-weight: bold;
     font-size: 1.15rem;
     box-shadow: var(--shadow-md);
-    transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1), background 0.18s,
-        color 0.18s;
+    transition: var(--transition-normal);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 120px;
     min-height: 48px;
     cursor: pointer;
-    outline: none;
     border: none;
-    gap: 0.5rem;
 }
 
-.profitCard:hover .profitHighlight,
-.profitHighlight:focus,
-.profitHighlight:active {
-    color: var(--color-text-on-primary);
+.profitCard:hover .profitHighlight {
     background: var(--gradient-accent);
     transform: scale(1.07);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18), var(--shadow-lg);
+    box-shadow: var(--shadow-lg);
 }
 
-@keyframes buttonPop {
-    0% {
-        transform: scale(0.95);
-    }
-    60% {
-        transform: scale(1.08);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes slideInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes slideInScale {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes buildingFloat {
-    0%,
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-8px) rotate(2deg);
-    }
-}
-
-@keyframes shimmer {
-    0% {
-        transform: translateX(-100%) translateY(-100%) rotate(45deg);
-    }
-    100% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
-    }
-}
-
+/* Rollup Section */
 .rollupSection {
     background: var(--color-surface);
     backdrop-filter: blur(20px);
     border-radius: var(--radius-lg);
     padding: 3rem;
-    margin-top: 4rem;
+    margin: 4rem auto 0;
     border: 1px solid var(--color-border);
     transition: var(--transition-normal);
     opacity: 0;
     transform: translateY(30px) scale(0.95);
     animation: slideInUp 0.8s ease 0.6s forwards;
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
 }
 
@@ -603,10 +539,89 @@
     color: #000000;
 }
 
+/* Animations */
+@keyframes buttonPop {
+    0% {
+        transform: scale(0.95);
+    }
+    60% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInScale {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes buildingFloat {
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
+    .franchiseSection {
+        padding: 3rem 0;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .heroCard {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem 3rem;
+        max-width: calc(100% - 2rem);
+    }
+
+    .heroIcon {
+        font-size: 3.5rem;
+    }
+
+    .heroTitle {
+        font-size: 1.8rem;
+    }
+
+    .heroDescription {
+        font-size: 1rem;
+    }
+
+    .featuredVideoSection {
+        margin: 3rem 0;
+    }
+
     .videoSectionTitle {
         font-size: 2.2rem;
         margin-bottom: 0.8rem;
+        padding: 0 1rem;
     }
 
     .videoSectionSubtitle {
@@ -616,18 +631,14 @@
     }
 
     .videoContainer {
-        margin: 0 1rem;
+        width: calc(100% - 2rem);
+        margin: 0 auto;
         border-radius: 20px;
     }
 
     .franchiseVideo {
         min-height: 280px;
         max-height: 350px;
-        border-radius: 20px;
-    }
-
-    .videoControls {
-        opacity: 1;
     }
 
     .playButton {
@@ -638,18 +649,6 @@
 
     .playIcon {
         font-size: 1.5rem;
-    }
-
-    .videoOverlay {
-        padding: 1.5rem;
-        position: static;
-        transform: none;
-        background: rgba(0, 0, 0, 0.85);
-        border-radius: 0 0 20px 20px;
-    }
-
-    .videoContainer:hover .videoOverlay {
-        transform: none;
     }
 
     .videoTitle {
@@ -667,8 +666,8 @@
 
     .contactForm {
         padding: 2rem;
-        margin: 0;
-        max-width: none;
+        max-width: calc(100% - 2rem);
+        margin: 0 1rem;
     }
 
     .contactForm h4 {
@@ -685,25 +684,8 @@
         font-size: 1rem;
     }
 
-    .title {
-        font-size: 2.5rem;
-    }
-
-    .heroCard {
-        padding: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    .heroIcon {
-        font-size: 3.5rem;
-    }
-
-    .heroTitle {
-        font-size: 1.8rem;
-    }
-
-    .heroDescription {
-        font-size: 1rem;
+    .profitSection {
+        margin: 3rem 0;
     }
 
     .profitTitle {
@@ -714,11 +696,12 @@
     .profitGrid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        margin: 0 1rem;
+        padding: 0 1rem;
     }
 
     .profitCard {
         padding: 2rem;
+        min-height: 300px;
     }
 
     .profitCardTitle {
@@ -728,6 +711,7 @@
     .rollupSection {
         padding: 2rem;
         margin: 3rem 1rem 0;
+        max-width: calc(100% - 2rem);
     }
 
     .rollupIcon {
@@ -743,6 +727,109 @@
     }
 }
 
+/* Small Mobile - Fixed video centering */
+@media (max-width: 650px) {
+    .featuredVideoSection {
+        margin: 3rem 0;
+        overflow: visible;
+    }
+
+    .videoContainer {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        transform: none !important;
+    }
+
+    .franchiseVideo {
+        width: 100%;
+        min-height: 250px;
+        max-height: 300px;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+
+    .videoControls {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    .playButton {
+        width: 56px;
+        height: 56px;
+    }
+
+    .videoOverlay {
+        padding: 1rem 0.75rem;
+        position: absolute;
+        opacity: 0;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 400px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .heroCard {
+        padding: 1.5rem;
+    }
+
+    .heroTitle {
+        font-size: 1.5rem;
+    }
+
+    .heroDescription {
+        font-size: 0.95rem;
+    }
+
+    .videoSectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .videoSectionSubtitle {
+        font-size: 1rem;
+    }
+
+    .franchiseVideo {
+        min-height: 200px;
+        max-height: 250px;
+    }
+
+    .playButton {
+        width: 50px;
+        height: 50px;
+    }
+
+    .playIcon {
+        font-size: 1.3rem;
+    }
+
+    .contactForm {
+        padding: 1.5rem;
+    }
+
+    .profitCard {
+        padding: 1.5rem;
+        min-height: 280px;
+    }
+
+    .profitCardTitle {
+        font-size: 1rem;
+    }
+
+    .profitDescription {
+        font-size: 0.9rem;
+    }
+
+    .rollupSection {
+        padding: 1.5rem;
+    }
+}
+
+/* Large Desktop */
 @media (min-width: 1200px) {
     .videoContainer {
         max-width: 1200px;
@@ -768,5 +855,15 @@
 
     .videoSectionSubtitle {
         font-size: 1.4rem;
+    }
+}
+
+/* Override any container styles that might affect centering */
+@media (max-width: 650px) {
+    .container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
