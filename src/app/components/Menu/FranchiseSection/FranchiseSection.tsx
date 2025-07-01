@@ -12,10 +12,8 @@ interface ProfitItem {
 
 const FranchiseSection: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [showOverlay, setShowOverlay] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [hasMounted, setHasMounted] = useState(false);
-    const overlayTimeout = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         setHasMounted(true);
@@ -107,12 +105,6 @@ const FranchiseSection: React.FC = () => {
 
     const handleVideoContainerClick = () => {
         if (isMobile) {
-            setShowOverlay(true);
-            if (overlayTimeout.current) clearTimeout(overlayTimeout.current);
-            overlayTimeout.current = setTimeout(
-                () => setShowOverlay(false),
-                2000
-            );
         }
     };
 
