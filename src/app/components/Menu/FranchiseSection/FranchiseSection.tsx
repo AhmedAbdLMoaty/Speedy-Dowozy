@@ -174,38 +174,6 @@ const FranchiseSection: React.FC = () => {
                         className={styles.videoContainer}
                         onClick={handleVideoContainerClick}
                     >
-                        <div
-                            className={
-                                styles.videoOverlay +
-                                ((showOverlay && isMobile) || !isMobile
-                                    ? " " + styles.visible
-                                    : "")
-                            }
-                            style={{
-                                pointerEvents: "none",
-                                left: 0,
-                                right: 0,
-                                top: 0,
-                                width: "100%",
-                                position: "absolute",
-                                zIndex: 2,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "flex-start",
-                                padding: "2rem 1rem 0 1rem",
-                                background:
-                                    "linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 80%, transparent 100%)",
-                            }}
-                        >
-                            <h4 className={styles.videoTitle}>
-                                Franczyza Speedy Dowozy
-                            </h4>
-                            <p className={styles.videoDescription}>
-                                Poznaj szczegóły współpracy, potencjał zysków i
-                                wsparcie dla franczyzobiorców
-                            </p>
-                        </div>
                         <video
                             ref={videoRef}
                             className={styles.franchiseVideo}

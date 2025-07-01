@@ -319,30 +319,6 @@ const AboutSection = () => {
                         className={styles.videoContainer}
                         style={{ position: "relative" }}
                     >
-                        <div
-                            className={styles.videoOverlay}
-                            style={{
-                                pointerEvents: "none",
-                                left: 0,
-                                right: 0,
-                                top: 0,
-                                width: "100%",
-                                position: "absolute",
-                                zIndex: 2,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "flex-start",
-                                padding: "2rem 1rem 4.5rem 1rem",
-                            }}
-                        >
-                            <h3 className={styles.videoTitle}>
-                                Film prezentacyjny
-                            </h3>
-                            <p className={styles.videoSubtitle}>
-                                Speedy Dowozy: Uwalniając moc dostaw.
-                            </p>
-                        </div>
                         <video
                             ref={videoRef}
                             className={styles.speedyVideo}
@@ -367,34 +343,6 @@ const AboutSection = () => {
                         className={styles.videoContainer}
                         style={{ position: "relative" }}
                     >
-                        <div
-                            className={styles.videoOverlay}
-                            style={{
-                                pointerEvents: "none",
-                                left: 0,
-                                right: 0,
-                                top: 0,
-                                width: "100%",
-                                position: "absolute",
-                                zIndex: 2,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "flex-start",
-                                padding: "2rem 1rem 4.5rem 1rem",
-                            }}
-                        >
-                            <h3 className={styles.videoTitle}>
-                                Szybkość to nasza pasja
-                            </h3>
-                            <p className={styles.videoSubtitle}>
-                                Masz problem z dowozem? Speedy Dowozy to
-                                rozwiązanie dla Twojej restauracji.
-                                Gwarantujemy, że Twoje potrawy dotrą do klientów
-                                zawsze gorące i zawsze na czas. Zapraszamy do
-                                współpracy!
-                            </p>
-                        </div>
                         <video
                             className={styles.speedyVideo}
                             loop
