@@ -456,7 +456,7 @@ const AboutSection = () => {
                                 className={styles.missionCard}
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
-                                <div className={styles.missionIcon}>Target</div>
+                                <div className={styles.missionIcon}>🎯</div>
                                 <p>{mission}</p>
                             </div>
                         ))}
