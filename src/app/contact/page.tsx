@@ -5,15 +5,11 @@ import styles from "./page.module.css";
 
 export default function Contact() {
     const [isVisible, setIsVisible] = useState(false);
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-    });
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
+    const formRef = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
         const observer = new window.IntersectionObserver(
@@ -26,20 +22,41 @@ export default function Contact() {
         return () => observer.disconnect();
     }, []);
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         setError("");
-        if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-            setError("Wypełnij wymagane pola: imię, email, wiadomość.");
-            return;
+
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch("https://formspree.io/f/mgvydbey", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+                if (formRef.current) {
+                    formRef.current.reset();
+                }
+            } else {
+                const errorData = await response.json();
+                console.error("Formspree error:", errorData);
+                throw new Error("Wystąpił problem z wysłaniem wiadomości");
+            }
+        } catch (err) {
+            setError(
+                "Wystąpił problem z wysłaniem wiadomości. Spróbuj ponownie później."
+            );
+            console.error("Error sending message:", err);
+        } finally {
+            setLoading(false);
         }
-        setSubmitted(true);
     };
 
     return (
@@ -64,84 +81,119 @@ export default function Contact() {
                             się z nami. Odpowiemy najszybciej jak to możliwe.
                         </p>
                     </div>
-                    <form
-                        className={styles.contactForm}
-                        onSubmit={handleSubmit}
-                        autoComplete="off"
-                        style={{ maxWidth: 520, margin: "0 auto" }}
-                    >
-                        <label htmlFor="name">Imię i nazwisko*</label>
-                        <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            value={form.name}
-                            onChange={handleChange}
-                            required
-                            className={styles.input}
-                        />
-                        <label htmlFor="email">Email*</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            required
-                            className={styles.input}
-                        />
-                        <label htmlFor="phone">Telefon</label>
-                        <input
-                            id="phone"
-                            name="phone"
-                            type="tel"
-                            value={form.phone}
-                            onChange={handleChange}
-                            className={styles.input}
-                        />
-                        <label htmlFor="message">Wiadomość*</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            value={form.message}
-                            onChange={handleChange}
-                            required
-                            rows={5}
-                            className={styles.textarea}
-                        />
-                        {error && (
-                            <div
+
+                    {submitted ? (
+                        <div
+                            style={{
+                                maxWidth: 520,
+                                margin: "0 auto",
+                                padding: "30px",
+                                textAlign: "center",
+                                backgroundColor: "#f0f9f4",
+                                borderRadius: "8px",
+                                color: "#E91E63",
+                                fontWeight: 600,
+                            }}
+                        >
+                            <h3
                                 style={{
-                                    color: "#ff4d4f",
-                                    marginBottom: 12,
+                                    marginBottom: "15px",
+                                    color: "#E91E63",
                                 }}
                             >
-                                {error}
-                            </div>
-                        )}
-                        {submitted ? (
-                            <div
+                                Dziękujemy za kontakt!
+                            </h3>
+                            <p style={{ color: "#E91E63" }}>
+                                Twoja wiadomość została wysłana. Odpowiemy
+                                najszybciej jak to możliwe.
+                            </p>
+                            <button
+                                className={styles.phoneButton}
+                                onClick={() => setSubmitted(false)}
                                 style={{
-                                    color: "#10b981",
-                                    fontWeight: 600,
-                                    marginTop: 16,
+                                    marginTop: "20px",
+                                    padding: "10px 20px",
                                 }}
                             >
-                                Dziękujemy za kontakt! Odpowiemy wkrótce.
-                            </div>
-                        ) : (
+                                Wyślij kolejną wiadomość
+                            </button>
+                        </div>
+                    ) : (
+                        <form
+                            ref={formRef}
+                            className={styles.contactForm}
+                            onSubmit={handleSubmit}
+                            style={{ maxWidth: 520, margin: "0 auto" }}
+                        >
+                            <label htmlFor="name">Imię i nazwisko*</label>
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                required
+                                className={styles.input}
+                            />
+                            <label htmlFor="email">Email*</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                required
+                                className={styles.input}
+                            />
+                            <label htmlFor="phone">Telefon</label>
+                            <input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                className={styles.input}
+                            />
+                            <label htmlFor="message">Wiadomość*</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                required
+                                rows={5}
+                                className={styles.textarea}
+                            />
+                            <input
+                                type="hidden"
+                                name="_subject"
+                                value="Nowy kontakt ze strony Speedy Dowozy"
+                            />
+                            <input type="hidden" name="_format" value="json" />
+                            <input
+                                type="text"
+                                name="_gotcha"
+                                style={{ display: "none" }}
+                            />
+
+                            {error && (
+                                <div
+                                    style={{
+                                        color: "#ff4d4f",
+                                        marginBottom: 12,
+                                    }}
+                                >
+                                    {error}
+                                </div>
+                            )}
+
                             <button
                                 className={styles.phoneButton}
                                 type="submit"
+                                disabled={loading}
                                 style={{
                                     width: "100%",
                                     marginTop: 18,
+                                    opacity: loading ? 0.7 : 1,
+                                    cursor: loading ? "not-allowed" : "pointer",
                                 }}
                             >
-                                Wyślij wiadomość
+                                {loading ? "Wysyłanie..." : "Wyślij wiadomość"}
                             </button>
-                        )}
-                    </form>
+                        </form>
+                    )}
                 </div>
             </div>
         </main>

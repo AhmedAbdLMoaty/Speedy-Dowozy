@@ -33,30 +33,9 @@ const nextConfig: NextConfig = {
             fullUrl: false,
         },
     },
-    async redirects() {
-        return [
-            {
-                source: "/restauracje",
-                destination: "/",
-                permanent: false,
-            },
-            {
-                source: "/o-nas",
-                destination: "/",
-                permanent: false,
-            },
-            {
-                source: "/kontakt",
-                destination: "/",
-                permanent: false,
-            },
-            {
-                source: "/zamow-teraz",
-                destination: "/",
-                permanent: false,
-            },
-        ];
-    },
+    // Redirects removed as they don't work with static exports
+    // For static sites, you'll need to use client-side redirects or configure them in your hosting platform
+
     typescript: {
         ignoreBuildErrors: false,
     },
